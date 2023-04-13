@@ -1,0 +1,147 @@
+/* MENU */
+
+body {
+    background: #f0f3f6;
+    font-size: 16px;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 800px;
+    background: #fff;
+    margin: 40px auto;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.container .item {
+    flex-basis: 25%;
+    max-width: 25%;
+    text-align: center;
+    position: relative;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin: auto;
+}
+.container .item a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.container .item a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    border: 2px solid #007bfc;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    transition: width 0.15s ease-out 0.15s, left 0.15s ease-out 0.15s, height 0.15s ease-out, opacity ease-out 0.3s;
+}
+.container .item a:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    border: 2px solid #007bfc;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    transition: width 0.15s ease-out 0.15s, left 0.15s ease-out 0.15s, height 0.15s ease-out, opacity ease-out 0.3s;
+}
+.container .item-image {
+    padding: 2.4rem;
+    height: 4rem;
+    width: 4rem;
+}
+.container .item-text {
+    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #555;
+    line-height: 1rem;
+    transition: transform ease 0.4s, opacity ease 0.4s;
+    opacity: 1;
+}
+.container .item-link-desc {
+    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #555;
+    line-height: 1rem;
+    transition: transform ease 0.4s, opacity ease 0.4s;
+    opacity: 0;
+}
+.container .item a:hover .item-text {
+    transform: translatey(-1rem);
+    opacity: 0;
+}
+.container .item a:hover .item-link-desc {
+    transform: translatey(-1rem);
+    opacity: 1;
+}
+.container .item a:hover:before {
+    width: 100%;
+    height: calc(100% - 10px);
+    left: 0px;
+    opacity: 1;
+    transition: width 0.15s ease-out, left 0.15s ease-out, height 0.15s ease-out 0.15s, opacity ease-out 0.15s;
+}
+.container .item a:hover:after {
+    width: 100%;
+    height: 10px;
+    left: 0px;
+    opacity: 1;
+    transition: width 0.15s ease-out, left 0.15s ease-out, height 0.15s ease-out 0.15s, opacity ease-out 0.15s;
+}
+
+
+
+/* AFFICHAGE DU PROFIL */
+.container_displayAccount {
+    max-width: 320px;
+    margin: 75px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#PPuser{
+    width: 125px;
+    height: 125px;
+    border-radius: 100px; 
+    border: solid 2px grey;
+}
+
+li{
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+#disconnect{
+    color: white;
+    background-color: red;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+
+
+
+

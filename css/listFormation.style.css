@@ -1,0 +1,35 @@
+h1, h2, h3, h4, h5{
+    margin: 0;
+    margin-bottom: 10px !important;
+}
+
+.h1{
+    text-align: center;
+    margin: 25px;
+}
+
+.card{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 25px;
+    width: 250px;
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btns{
+    margin-bottom: 10px;
+}
+
+.template_BTN{
+    font-size: 15px;
+    padding: 10px;
+}
