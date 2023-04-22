@@ -43,7 +43,7 @@ class UserControleur{
     
     private function sendMailValidation($login,$email){
         $mail = $email;
-        $urlVerification = "http://localhost/btssio-sisr1/GestionFormation/"."index.php?action=validMailAccount&login=".$login;
+        $urlVerification = "http://localhost/Projets/CAFOMA/"."index.php?action=validMailAccount&login=".$login;
         $sujet = "Confirmation de création de votre compte !";
         $message = "Pour valider votre compte veuillez cliquer sur le lien suivant ".$urlVerification;
         sendMail($mail,$sujet,$message);
@@ -94,7 +94,6 @@ class UserControleur{
 
     function validLogin(){
         $alert = "";
-        if(!Securite::verifAccessAdmin()){
             if(isset($_POST['login']) && !empty($_POST['login']) && isset($_POST['mdp']) && !empty($_POST['mdp'])){
                 $login = $_POST['login'];
                 
@@ -102,20 +101,17 @@ class UserControleur{
                 $passwdHash = $this->userManager->getPasswdHashUser($login);
                 $role = $this->userManager->getRoleUser($login);
                 $valid = $this->userManager->getIsValid($login);
-
                 
                 if ($valid === "1"){
-                    
                     if(password_verify($_POST['mdp'], $passwdHash)){
                         $_SESSION['id'] = $user_id;
                         $_SESSION['role'] = $role;  
-                        $_SESSION['login'] = $login;                      
+                        $_SESSION['login'] = $login;
                         header("Location: index.php");
                         
                     }else {$alert = "Couple login/mot de passe invalide"; require 'vue/user/loginAccount.view.php';}                    
                 }else {$alert = "Votre compte n'est pas vérifier !"; require 'vue/user/loginAccount.view.php';}
             } else {$alert = "Saisir un nom d'utilisateur et un mot de passe"; require 'vue/user/loginAccount.view.php';}
-        }
     }
     
     function deconnexion(){

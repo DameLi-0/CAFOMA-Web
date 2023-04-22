@@ -13,7 +13,7 @@
 
 <body>
     <header>
-        <img src="./public/obg/StudentFormFinal.png" alt="LOGO" width="300px" height="100px">
+        <img src="./public/Obligatory/StudentFormFinal.png" alt="LOGO" width="300px" height="100px">
         <nav>
             <ul>
                 <li><a href="index.php">Accueil</a></li>
@@ -31,9 +31,6 @@
                     <li><a class="dropdown-item" href="index.php?action=displayAllTabFormation">TabFormation</a></li>
                 <?php } ?>
                     
-                <?php if (Securite::verifAccessResponsable() || Securite::verifAccessAdmin()){?>
-                    <li><a class="dropdown-item" href="index.php?action=createFormation">Créer formation</a></li>
-                <?php } ?>
             </ul>
         </nav>
     </header>

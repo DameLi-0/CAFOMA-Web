@@ -1,7 +1,5 @@
 <?php ob_start()?>
 
-
-
 <head>
   <link rel="stylesheet" href="./css/account.style.css" />
 </head>
@@ -11,7 +9,7 @@
         <div class="item">
           <a href="index.php?action=displayMyTraining">
             <div class="item-image">
-              <img src="./public/obg/training.png" width="64" height="64">
+              <img src="./public/Obligatory/education.png" width="64" height="64">
             </div>
             <div class="item-text">My Training</div>
             <div class="item-link-desc">Access...</div>
@@ -21,12 +19,36 @@
         <div class="item">
           <a href="index.php?action=displayMyAccount">
             <div class="item-image">
-              <img src="./public/obg/account.png" width="64" height="64">
+              <img src="./public/Obligatory/account.png" width="64" height="64">
             </div>
             <div class="item-text">My Account</div>
             <div class="item-link-desc">Access...</div>
           </a>
         </div>
+        
+        <?php if (Securite::verifAccessResponsable() || Securite::verifAccessAdmin()){?>
+            <div class="item">
+              <a href="index.php?action=displayMenuCreation">
+                <div class="item-image">
+                  <img src="./public/Obligatory/bdd.png" width="64" height="64">
+                </div>
+                <div class="item-text">Creation Area</div>
+                <div class="item-link-desc">Access...</div>
+              </a>
+            </div>
+        
+           <div class="item">
+              <a href="index.php?action=displayMyCreatedTrainings">
+                <div class="item-image">
+                  <img src="./public/Obligatory/Save.png" width="64" height="64">
+                </div>
+                <div class="item-text">Save Area</div>
+                <div class="item-link-desc">Access...</div>
+              </a>
+            </div>        
+            
+        <?php } ?>
+        
     </div>
 </body>
 

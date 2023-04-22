@@ -14,3 +14,4 @@ abstract class ConnexionBDD {
         return self::$pdo;
     }
 }
+?>

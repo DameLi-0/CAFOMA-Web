@@ -6,9 +6,6 @@
 
 <body>
     
-    <div id="alert">
-        <?php $alert = ""; ?>
-    </div>    
     <div class="main">
       <h1>Connexion</h1>
       <form method="POST" action="index.php?action=validLogin">
@@ -19,9 +16,9 @@
           <label for="password">Mot de passe</label>
           <input type="password" id="mdp" name="mdp" placeholder="Mot de passe">
 
-          <input type="submit" href="index.php?action=validco" value="Se connecter">
+          <input class="template_BTN" type="submit" value="Se connecter">
 
-        <a href="index.php?action=createAccount">Créer un compte</a>
+        <a  href="index.php?action=createAccount">Créer un compte</a>
       </form>
     </div>
 </body>

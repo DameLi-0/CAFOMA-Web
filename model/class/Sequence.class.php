@@ -2,7 +2,6 @@
 class Sequence implements JsonSerializable {
     
     private $sequence_id;
-    //private $fk_formation_id;
     private $libelle;
     private $description;
     private $tab_ressource = array();

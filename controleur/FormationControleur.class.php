@@ -27,9 +27,9 @@ class FormationsControleur{
     /**
      * Affichage de toute les formations (VUE ADMIN)
      */
-    function displayAllTabFormation(){
-        $tabFormations=$this->formationManager->displayAllFormation();
-        require 'vue/formation/adminTabAllFormation.view.php';
+    function displayMyCreatedTrainings($user_id){
+        $tabFormations=$this->formationManager->displayMyCreatedTrainings($user_id);
+        require 'vue/formation/displayMyCreatedTraining.view.php';
     }    
     
     /**
@@ -55,13 +55,19 @@ class FormationsControleur{
      * @param type $acronyme
      * @param type $description
      */
-    function validCreateFormation($libelle, $acronyme, $description, $intro){
+    function validCreateFormation($libelle, $acronyme, $description){
         
+        /* GESTION DE L'IMAGE */
         $file = $_FILES['img'];
-        $dir = "public/PPformation/";
-        $nomImageAjoute = ajouterImage($file, $dir);        
+        $dir = "public/Training/Image/";
+        $nomImageAjoute = ajouterImage($file, $dir);  
         
-        $formation = new Formation("",$_SESSION['id'], $libelle, $acronyme, $description, $nomImageAjoute, $intro, "");
+        /* GESTION DE LA VIDEO */
+        $file = $_FILES['video'];
+        $dir = "public/Training/Ressource/";
+        $nomVideoAjoute = ajouterImage($file, $dir); 
+        
+        $formation = new Formation("",$_SESSION['id'], $libelle, $acronyme, $description, $nomImageAjoute, $nomVideoAjoute);
         $this->formationManager->addFormation($formation);
         header("Location: index.php");
     }
@@ -71,6 +77,7 @@ class FormationsControleur{
      * @param type $formation_id
      */
     function displayCreateSequence($formation_id){
+        $formation = $this->formationManager->displayFormationById($formation_id);
         require 'vue/formation/createSequence.view.php';
     }
     
@@ -84,7 +91,7 @@ class FormationsControleur{
     function validCreateSequence($formation_id, $libelle, $description){
         $sequence = new Sequence("", $formation_id, $libelle, $description);
         $this->formationManager->addSequence($sequence);
-        header("Location: index.php");        
+        header("Location: index.php?action=createSequence&formation_id=".$formation_id);        
     }
     
     function displayMyTraining($user_id){
@@ -98,5 +105,25 @@ class FormationsControleur{
         $this->formationManager->registerTraining($inscription);
         header("Location: index.php");       
     }
+    
+    
+    function displayMenuCreation(){
+        require 'vue/formation/menuCreation.view.php';
+    }
+    
+    function createRessource(){
+        require 'vue/formation/createRessource.view.php';
+    }
+    
+    function validCreateRessource($formation_id,$sequence_id, $libelle, $extension){
+
+        $file = $_FILES['ressource'];
+        $dir = "public/Training/Ressource/";
+        $nomRessourceAjoute = ajouterImage($file, $dir); 
+        
+        $ressource = new Ressource("", $formation_id, $sequence_id, $libelle, $nomRessourceAjoute, $extension);
+        $this->formationManager->addRessource($ressource);
+        header("Location: index.php?action=createSequence&formation_id=".$formation_id);       
+    }    
 }
     

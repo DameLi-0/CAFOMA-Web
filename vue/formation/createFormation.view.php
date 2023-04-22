@@ -23,13 +23,12 @@
         <input type="text" id="description" name="description" placeholder="Description" required>
 
         <label for="img">Image</label>
-        <input type="file" id="img" name="img" placeholder="Image" required>
+        <input type="file" id="img" name="img" required>
 
-        <label for="intro">Vidéo</label>
-        <input type="text" id="intro" name="intro" placeholder="Lien de la vidéo">       
+        <label for="video">Video</label>
+        <input type="file" id="video" name="video" capture="environment" accept="video/*" >       
         
-        
-      <input type="submit" value="Create">
+      <input class="template_BTN" type="submit" value="Create">
       
     </form>
     

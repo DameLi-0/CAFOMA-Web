@@ -149,6 +149,19 @@ class FormationManager extends ConnexionBDD {
         $stmt->closeCursor();  
     }
     
-
+    function addRessource($ressource){
+        $pdo = $this->getBdd();
+        $req = "
+        INSERT INTO ressource (fk_formation_id, sequence_id, libelle, link, extension)
+        VALUES (:fk_formation_id, :fk_sequence_id, :libelle, :link, :extension)";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":fk_formation_id",$ressource->getFk_formation_id(),PDO::PARAM_INT);
+        $stmt->bindValue(":fk_sequence_id",$ressource->getFk_sequence_id(),PDO::PARAM_INT);
+        $stmt->bindValue(":libelle",$ressource->getLibelle(),PDO::PARAM_STR);
+        $stmt->bindValue(":link",$ressource->getLink(),PDO::PARAM_STR);
+        $stmt->bindValue(":extension",$ressource->getExtension(),PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt->closeCursor();          
+    }
 }    
 ?>

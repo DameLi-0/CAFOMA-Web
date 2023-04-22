@@ -19,10 +19,10 @@ try{
             case "createFormation": $formationControleur->displayCreateFormation();
                 break;
 
-            case "validCreateFormation": $formationControleur->validCreateFormation($_POST['libelle'], $_POST['acronyme'], $_POST['description'], $_POST['intro']);
+            case "validCreateFormation": $formationControleur->validCreateFormation($_POST['libelle'], $_POST['acronyme'], $_POST['description']);
                 break;
 
-            case "displayAllTabFormation": $formationControleur->displayAllTabFormation();
+            case "displayMyCreatedTrainings": $formationControleur->displayMyCreatedTrainings($_SESSION['id']);
                 break;
 
             case "displayFormationMore": $formationControleur->displayFormationMore($_GET['formation_id']);
@@ -38,7 +38,27 @@ try{
                 break;  
                         
             case "addTraining": $formationControleur->registerTraining($_GET['id']);
-                break;             
+                break;   
+            
+            case "displayMenuCreation": $formationControleur->displayMenuCreation();
+                break;               
+            
+            case "createRessource": $formationControleur->createRessource();
+                break;                
+            
+            case "validCreateRessource": $formationControleur->validCreateRessource($_POST['formation_id'],$_POST['sequence_id'], $_POST['libelle'], $_POST['extension']);
+                break;                 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /* --------------------- USER --------------------- */
 
             case "createAccount": $userControleur->displayCreateAccount();

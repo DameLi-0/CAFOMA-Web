@@ -5,7 +5,7 @@
     </head>
 
     <section>
-        <h1 class="h1">Liste des formations</h1>
+        <h1 class="h1">Liste de mes formations créées</h1>
         
         <div class="cards">
         <?php foreach($tabFormations as $formation) {?>    
@@ -14,15 +14,8 @@
                 <h2><?php echo $formation->getLibelle(); ?></h2>
                 <h3><?php echo $formation->getAcronyme(); ?></h3>
                 <h4><?php echo $formation->getDescription(); ?></h4>
-                <div class="btns">
-                    <a class="template_BTN"  href="index.php?action=displayFormationMore&formation_id=<?= $formation->getFormation_id();?>">En savoir +</a>
-                    
-                    <?php if(Securite::isConnected()){ ?>
-                            <a class="template_BTN" href="index.php?action=addTraining&id=<?php echo $formation->getFormation_id(); ?>">M'inscrire</a>
-                    <?php } ?>
-                    
-                </div>
-                <h5>Crée par <?php echo $formation->getFk_user_id();?></h5>
+                <br>
+                <a href="index.php?action=createSequence&formation_id=<?php echo $formation->getFormation_id(); ?>"><img src="./public/Obligatory/edit.png" width="30px" height="30px"></a>
 
             </div>
         <?php } ?>    
@@ -32,6 +25,6 @@
 
 <?php
     $content=ob_get_clean();
-    $titre = "Liste des formations !";
+    $titre = "Vos formations !";
     require "vue/template.view.php";
 ?>
