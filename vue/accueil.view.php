@@ -6,7 +6,7 @@
 <body>
     <main>
         <section>
-                <h2>Bienvenue sur notre site de formation en ligne</h2>
+                <h2>Bienvenue sur CAFOMA</h2>
                 <p>L’objectif de cafoma n’est pas de se former uniquement en ligne mais de mettre en œuvre une pédagogie inversée et, ainsi, de réserver l’accompagnement des professeurs à la mise en pratique et aux difficultés rencontrées. Notre plateforme a été conçue pour offrir une expérience d'apprentissage interactive et flexible, qui permet aux apprenants de prendre en charge leur propre processus d'apprentissage.</p>
                 <p>Nous mettons l'accent sur l'accompagnement de votre formation par des professeurs expérimentés avec qui vous serez en relation toutes les semaines par des séances en présentielles ou en distancielles suivant vos besoins, afin de :</p>
                 <ul>

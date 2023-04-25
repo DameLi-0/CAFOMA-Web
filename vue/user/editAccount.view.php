@@ -12,7 +12,7 @@
     
     <form method="POST" action="index.php?action=validEditAccount"  enctype="multipart/form-data">
         
-        <input type="hidden" name="id" value="<?= $user->getId() ?>">
+        <input type="hidden" name="id" value="<?= $user->getUser_id() ?>">
 
         <label for="login">Login</label>
         <input type="text" id="login" name="login" placeholder="Login" value="<?php echo $user->getLogin(); ?>" required>   
@@ -22,19 +22,18 @@
         <label for="email">E-mail</label>
         <input type="email" id="email" name="email" placeholder="E-mail" value="<?php echo $user->getEmail(); ?>" required >
         
-        <label class="form-label" for="img">Photo de profil</label>
-        <input class="form-control" type="file" id="img" name="img">
-        <input type="hidden" name="image" value="<?= $user->getImg() ?>">
+        <div style="margin: 0;">
+            <label class="form-label" for="img">Photo de profil</label>
+            <p style="color: lightgray; margin: 0;">Aperçu</p>
+            <img src="public/User/<?php echo $user->getImg(); ?>" height="50px" width="50px">
+            <input class="form-control" type="file" id="img" name="img">
+        </div>
 
         <?php if (Securite::verifAccessAdmin()){ ?>
             <label for="role">Rôle</label>
             <input type="text" id="role" name="role" placeholder="Rôle" value="<?php echo $user->getRole(); ?>" required>   
         <?php } ?>
             
-        <!--<div>
-            <input type="checkbox" id="accept" name="accept" value="accept" required>
-            <label for="accept">J'accepte les conditions d'utilisations de mes données.</label>
-        </div>-->
       
       <input type="submit" value="Editer">
       

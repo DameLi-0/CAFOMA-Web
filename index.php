@@ -68,7 +68,7 @@ try{
                 break;   
             
             /*
-             * Route vers l'affichage du menu de création
+             * Route vers l'affichage du menu de création 
              */
             case "displayMenuCreation": $formationControleur->displayMenuCreation();
                 break;               
@@ -90,49 +90,71 @@ try{
              */
             case "displayAdminTabAllFormation": $formationControleur->displayAdminTabAllFormation();
                 break;              
-            
-            
-            
-            
-            
-            
-            
+
             
             
             /* --------------------- USER --------------------- */
 
+            /*
+             * Route vers l'affichage du formaulaire de création de compte
+             */
             case "createAccount": $userControleur->displayCreateAccount();
                 break;
 
+            /*
+             * Route vers la gestion et l'ajout des données entrer dans le formulaire de création de compte
+             */
             case "validCreateAccount": $userControleur->validCreateAccount($_POST['login'], $_POST['mdp'], $_POST['email']);
                 break;
             
+            /*
+             * Route vers la validation d'un utilisateur via mail
+             */
             case "validMailAccount": $userControleur->validMailAccount($_GET['login']);
                 break;
             
+            /*
+             * Route vers l'affichage du formaulaire de connexion
+             */
             case "loginAccount": $userControleur->displayLoginAccount();
                 break;
 
+           /*
+            * Route vers la vérification des données entrer dans le formulaire de création de compte
+            */ 
             case "validLogin": $userControleur->validLogin();
                 break;
 
+            /*
+            * Route vers la déconnexion d'un utilsateur
+            */ 
             case "deconnexion": $userControleur->deconnexion();
                 break;
 
-           // case "editAccount": $userControleur->editUser($_GET['user_id']);
-             //   break;
+            case "editAccount": $userControleur->editUser($_GET['id']);
+                break;
 
             //case "validEditAccount": $userControleur->validEditAccount($_POST['user_id'], $_POST['login'], $_POST['mdp'], $_POST['email'], $_POST['role']);
               //  break;
             
+            /*
+             * Route vers l'affichage du menu de compte
+             */
             case "displayMenuAccount": $userControleur->displayMenuAccount();
                 break;
 
+            /*
+             * Route vers l'affichage du compte
+             */
             case "displayMyAccount": $userControleur->displayAccount($_SESSION['login']);
                 break;
 
+            /*
+             * Route vers l'affichage de tout les utilisateurs (ADMIN)
+             */
             case "displayAllUsers": $userControleur->displayAllUsers();
                 break;     
+            
             default: throw new Exception("La page n'existe pas");
         }
     }

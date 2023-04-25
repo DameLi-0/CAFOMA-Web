@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="./css/listFormation.style.css" />
     </head>
 
-    <section>
+    <section class="section_myT">
         <h1 class="h1">Liste de mes formations créées</h1>
         
         <div class="cards">

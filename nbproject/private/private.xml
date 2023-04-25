@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/Projets/CAFOMA/vue/template.view.php</file>
-            <file>file:/C:/wamp64/www/Projets/CAFOMA/css/account.style.css</file>
-            <file>file:/C:/wamp64/www/Projets/CAFOMA/vue/user/menuAccount.view.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/index.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/controleur/UserControleur.class.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/vue/user/displayAccount.view.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/vue/user/editAccount.view.php</file>
         </group>
     </open-files>
 </project-private>

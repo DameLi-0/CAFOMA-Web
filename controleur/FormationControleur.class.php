@@ -17,7 +17,7 @@ class FormationsControleur{
     }
     
     /**
-     * Affichage de toute les formations (VUE ALL)
+     * Affichage de toute les formations
      */
     function displayAllFormation(){        
         $tabFormations=$this->formationManager->displayAllFormation();
@@ -25,7 +25,7 @@ class FormationsControleur{
     }
     
     /**
-     * Affichage de toute les formations (VUE ADMIN)
+     * Affichage de toute les formations 
      */
     function displayMyCreatedTrainings($user_id){
         $tabFormations=$this->formationManager->displayMyCreatedTrainings($user_id);
@@ -33,7 +33,7 @@ class FormationsControleur{
     }    
     
     /**
-     * Affichage de la vue détailer de la formation (VUE ALL)
+     * Affichage de la vue détailer de la formation
      */
     function displayFormationMore($formation_id){  
         $formation = $this->formationManager->displayFormationById($formation_id);
@@ -42,14 +42,16 @@ class FormationsControleur{
     
     
     /**
-     * Création d'une formation (VUE ADMIN / RESPONSABLE)
+     * Envoie vers le formulaire de création de formation 
      */
     function displayCreateFormation(){
         require 'vue/formation/create/createFormation.view.php';
     }
 
     /**
-     * Ajout de la formation en BDD et gestion de l'image 
+     * Gestion de l'image et de la vidéo récupéré via le formulaire
+     * Création de l'objet "Formation"
+     * Ajout des données en base de données
      * 
      * @param type $libelle
      * @param type $acronyme
@@ -84,6 +86,8 @@ class FormationsControleur{
     /**
      * Création de l'objet séquence
      * Ajout de la séquence en BDD 
+     * Redrection vers la vue du formulaires de création de séquence
+     * 
      * @param type $formation_id
      * @param type $libelle
      * @param type $description
@@ -94,11 +98,25 @@ class FormationsControleur{
         header("Location: index.php?action=createSequence&formation_id=".$formation_id);        
     }
     
+    /**
+     * Récupération des formations auquelle l'utilsateur est inscrit en base de données
+     * Redirection vers la vue d'affichage des formations auquelle l'utilsateur est inscrite
+     * 
+     * @param type $user_id
+     */
     function displayMyTraining($user_id){
         $tabInscription = $this->formationManager->displayMyTraining($user_id);
         require 'vue/formation/display/displayMyTraining.view.php';        
     }
     
+    /**
+     * Stockage de la variable superglobal 
+     * Création de l'objet "Inscription"
+     * Ajout de l'inscription en base de données
+     * Redirection vers la page d'accueil
+     * 
+     * @param type $formation_id
+     */
     function registerTraining($formation_id){    
         $fk_user_id = $_SESSION['id'];
         $inscription = new Inscription($formation_id, $fk_user_id);
@@ -106,15 +124,31 @@ class FormationsControleur{
         header("Location: index.php");       
     }
     
-    
+    /**
+     * Affichage du menu de création
+     */
     function displayMenuCreation(){
         require 'vue/formation/menuCreation.view.php';
     }
     
+    /**
+     * Affichage du formulaire de création de ressource
+     */
     function createRessource(){
         require 'vue/formation/create/createRessource.view.php';
     }
     
+    /**
+     * Gestion du fichier reçue dans le formulaire
+     * Création de l'objet "Ressource"
+     * Ajout de l'objet en base de données
+     * Redirection vers le formulaire de création de séquence
+     * 
+     * @param type $formation_id
+     * @param type $sequence_id
+     * @param type $libelle
+     * @param type $extension
+     */
     function validCreateRessource($formation_id,$sequence_id, $libelle, $extension){
 
         $file = $_FILES['ressource'];
@@ -126,6 +160,10 @@ class FormationsControleur{
         header("Location: index.php?action=createSequence&formation_id=".$formation_id);       
     }    
     
+    /**
+     * Récupération de toutes les formations en base de données
+     * Redirection vers la vue d'affichage de toute les formations
+     */
     function displayAdminTabAllFormation(){
         $tabFormations=$this->formationManager->displayAllFormation();
         require 'vue/admin/adminTabAllFormation.view.php';
