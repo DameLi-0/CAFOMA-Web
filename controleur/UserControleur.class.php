@@ -93,6 +93,7 @@ class UserControleur{
     }     
 
     function validLogin(){
+        echo "test";
         $alert = "";
             if(isset($_POST['login']) && !empty($_POST['login']) && isset($_POST['mdp']) && !empty($_POST['mdp'])){
                 $login = $_POST['login'];

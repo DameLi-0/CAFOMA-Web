@@ -7,21 +7,21 @@ class Formation implements JsonSerializable{
     private $acronyme;
     private $description;
     private $img;
-    private $intro;
+    private $video;
     private $tab_sequence = array();
     
-    function __construct($formation_id, $fk_user_id, $libelle, $acronyme, $description, $img, $intro) {
+    function __construct($formation_id, $fk_user_id, $libelle, $acronyme, $description, $img, $video) {
         $this->formation_id = $formation_id;
         $this->fk_user_id = $fk_user_id;
         $this->libelle = $libelle;
         $this->acronyme = $acronyme;
         $this->description = $description;
         $this->img = $img;
-        $this->intro = $intro;
+        $this->video = $video;
     }
     
     public function __toString() {
-        return "formation_id=".$this->formation_id. "fk_user_id=".$this->fk_user_id. "libelle=".$this->libelle. "acronyme=".$this->acronyme. "description=".$this->description. "img=".$this->img. "tab_sequence=".$this->tab_sequence. "intro".$this->intro. "tab_sequence".$this->tab_sequence;
+        return "formation_id=".$this->formation_id. "fk_user_id=".$this->fk_user_id. "libelle=".$this->libelle. "acronyme=".$this->acronyme. "description=".$this->description. "img=".$this->img. "tab_sequence=".$this->tab_sequence. "video".$this->video. "tab_sequence".$this->tab_sequence;
     }
 
     public function getFormation_id(){return $this->formation_id;}
@@ -45,8 +45,8 @@ class Formation implements JsonSerializable{
     public function getTab_sequence(){return $this->tab_sequence;}
     public function setTab_sequence($tab_sequence){$this->tab_sequence = $tab_sequence;}     
     
-    public function getIntro(){return $this->intro;}
-    public function setIntro($intro){$this->intro = $intro;}        
+    public function getVideo(){return $this->video;}
+    public function setVideo($video){$this->video = $video;}        
 
     public function jsonSerialize() {
         return $this->array;

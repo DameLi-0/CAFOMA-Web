@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 31 mars 2023 à 10:11
+-- Généré le : sam. 22 avr. 2023 à 22:32
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `gestionformation`
+-- Base de données : `cafoma`
 --
-CREATE DATABASE IF NOT EXISTS `gestionformation` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `gestionformation`;
+CREATE DATABASE IF NOT EXISTS `cafoma` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `cafoma`;
 
 -- --------------------------------------------------------
 
@@ -37,11 +37,45 @@ CREATE TABLE IF NOT EXISTS `formation` (
   `acronyme` varchar(64) NOT NULL,
   `description` text NOT NULL,
   `img` text NOT NULL,
-  `intro` text NOT NULL,
+  `video` text NOT NULL,
   PRIMARY KEY (`formation_id`),
-  UNIQUE KEY `fk_formation_id` (`formation_id`),
   KEY `fk_user_id` (`fk_user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `inscription`
+--
+
+DROP TABLE IF EXISTS `inscription`;
+CREATE TABLE IF NOT EXISTS `inscription` (
+  `inscription_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_formation_id` int(10) UNSIGNED NOT NULL,
+  `fk_user_id` int(10) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`inscription_id`),
+  KEY `fk_formation_id` (`fk_formation_id`),
+  KEY `fk_user_id` (`fk_user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ressource`
+--
+
+DROP TABLE IF EXISTS `ressource`;
+CREATE TABLE IF NOT EXISTS `ressource` (
+  `ressource_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_formation_id` int(11) UNSIGNED NOT NULL,
+  `fk_sequence_id` int(11) UNSIGNED NOT NULL,
+  `libelle` varchar(255) NOT NULL,
+  `link` text NOT NULL,
+  `extension` varchar(4) NOT NULL,
+  PRIMARY KEY (`ressource_id`,`fk_formation_id`,`fk_sequence_id`),
+  KEY `fk_Fid_Sid` (`fk_formation_id`,`fk_sequence_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -51,13 +85,12 @@ CREATE TABLE IF NOT EXISTS `formation` (
 
 DROP TABLE IF EXISTS `sequence`;
 CREATE TABLE IF NOT EXISTS `sequence` (
-  `sequence_id` int(11) NOT NULL,
-  `fk_formation_id` int(11) NOT NULL,
+  `sequence_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `fk_formation_id` int(11) UNSIGNED NOT NULL,
   `libelle` varchar(255) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`sequence_id`,`fk_formation_id`),
   KEY `fk_formation_id` (`fk_formation_id`) USING BTREE
-  CONSTRAINT `fk_formation_id` FOREIGN KEY (`fk_formation_id`) REFERENCES `formation`(`formation_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -74,17 +107,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(144) CHARACTER SET latin1 NOT NULL,
   `img` text CHARACTER SET latin1 NOT NULL,
   `role` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `valid` tinyint(1) NOT NULL,
   PRIMARY KEY (`user_id`) USING BTREE,
   UNIQUE KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`user_id`, `login`, `mdp`, `email`, `img`, `role`) VALUES
-(32, 'admin', '$2y$10$vR.D45QP1fzOQ/et6NR9FuezQ.hF4HdJaSwLpCJXanqAp9erCe8.W', 'admin@gmail.com', '20678_', 'Admin'),
-(33, 'abo', '$2y$10$VBmbhpwBfIVQf2hx56/kzOCirdA3KiAHSUtew.GRD2edgvslCJDW.', 'abo@gmail.com', '82130_Max_Chibi1.jpg', 'Abonner');
+INSERT INTO `user` (`user_id`, `login`, `mdp`, `email`, `img`, `role`, `valid`) VALUES
+(1, 'a', '$2y$10$C3pa2eh7aIAIMuWykPpR3.0VBk552qJz4HQhATOX6nRODgUsS/lY6', 'maxducroizet@gmail.com', '57577_Max_Chibi1.jpg', 'Responsable', 1),
+(27, 'admin', '$2y$10$mKyduV1sjxQNmluYq3oSgew1RVhqWMam7xdh6EZPzZQNVwp1UuNQy', 'maxanceducroizet@gmail.com', '27501_Max_Chibi1.jpg', 'Admin', 1);
 
 --
 -- Contraintes pour les tables déchargées
@@ -94,7 +128,26 @@ INSERT INTO `user` (`user_id`, `login`, `mdp`, `email`, `img`, `role`) VALUES
 -- Contraintes pour la table `formation`
 --
 ALTER TABLE `formation`
-  ADD CONSTRAINT `addBy` FOREIGN KEY (`fk_user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`fk_user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Contraintes pour la table `inscription`
+--
+ALTER TABLE `inscription`
+  ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`fk_formation_id`) REFERENCES `formation` (`formation_id`),
+  ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`fk_user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Contraintes pour la table `ressource`
+--
+ALTER TABLE `ressource`
+  ADD CONSTRAINT `fkc_Fid_Sid` FOREIGN KEY (`fk_formation_id`,`fk_sequence_id`) REFERENCES `sequence` (`fk_formation_id`, `sequence_id`);
+
+--
+-- Contraintes pour la table `sequence`
+--
+ALTER TABLE `sequence`
+  ADD CONSTRAINT `fk_formation_id` FOREIGN KEY (`fk_formation_id`) REFERENCES `formation` (`formation_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

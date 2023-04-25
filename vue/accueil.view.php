@@ -1,47 +1,39 @@
 <?php ob_start()?>
+<?php var_dump($_SESSION); ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/accueil.style.css">
 </head>
-
-<?php var_dump($_SESSION); ?>
-
-
-
-<main>
-    <section>
-            <h2>Bienvenue sur notre site de formation en ligne</h2>
-            <p>Nous proposons une large sélection de cours en ligne pour vous aider à améliorer vos compétences et votre carrière professionnelle. Nos cours sont dispensés par des experts de l'industrie et couvrent une variété de domaines, allant de la programmation et du développement web au marketing digital et à la gestion de projet.</p>
-            <a class="template_BTN" href="index.php?action=loginAccount" >Inscrivez-vous maintenant</a>
-    </section>
-    
-    <section>
-        <h3>Nos derniers cours</h3>
-        <ul>
-            <li class="accueil_li">Introduction au développement web</li>
-            <li class="accueil_li">Marketing digital pour les débutants</li>
-            <li class="accueil_li">Gestion de projet pour les PME</li>
-        </ul>
-        <a class="template_BTN" href='index.php?action=displayAllFormations' >Voir tous les cours</a>
-    </section>
-    
-    <section>
-        <h3>Pourquoi choisir notre site de formation en ligne ?</h3>
+<body>
+    <main>
+        <section>
+                <h2>Bienvenue sur notre site de formation en ligne</h2>
+                <p>L’objectif de cafoma n’est pas de se former uniquement en ligne mais de mettre en œuvre une pédagogie inversée et, ainsi, de réserver l’accompagnement des professeurs à la mise en pratique et aux difficultés rencontrées. Notre plateforme a été conçue pour offrir une expérience d'apprentissage interactive et flexible, qui permet aux apprenants de prendre en charge leur propre processus d'apprentissage.</p>
+                <p>Nous mettons l'accent sur l'accompagnement de votre formation par des professeurs expérimentés avec qui vous serez en relation toutes les semaines par des séances en présentielles ou en distancielles suivant vos besoins, afin de :</p>
+                <ul>
+                    <li>Personnaliser l'enseignement : adapter la formation à vos besoins individuels</li>
+                    <li>Renforcer la motivation et la confiance : par un suivi étroit et une bienveillance</li>
+                    <li>Créer un environnement d'apprentissage positif : fournir des conseils et des stratégies d'étude efficaces</li>
+                    <li>Assurer une qualité de l'enseignement optimale : obtenir des explications claires et détaillées sur les sujets abordés</li>
+                </ul>
+                <a class="template_BTN" href="index.php?action=loginAccount" >Inscrivez-vous maintenant</a>
+        </section>
         
-        <ul>
-                <li class="accueil_li">Cours dispensés par des experts de l'industrie</li>
-                <li class="accueil_li" >Large sélection de cours dans différents domaines</li>
-                <li class="accueil_li">Flexibilité pour étudier quand et où vous le souhaitez</li>
-                <li class="accueil_li">Prix abordables pour tous les budgets</li>
-        </ul>
+        <section>
+            <h2>Application Mobile</h2>
+            <p>Grâce à l’application mobile que vous pouvez télécharger dans l'onglet "application android", cafoma offre aux apprenants la possibilité d'accéder aux formations en ligne à partir de leurs smartphones ou tablettes</p>
+            <p>Notre approche pédagogique se base sur les dernières recherches en matière d'apprentissage et repose sur une combinaison de vidéos de cours, de modules interactifs, de forums de discussion et de séances de cours en présentielles. Les apprenants peuvent avancer à leur propre rythme, en fonction de leur propre niveau de compétence et de leur disponibilité</p>
+            <p>Notre plateforme est facile à utiliser et accessible à tout moment, de n'importe où dans le monde, à condition d'avoir une connexion Internet. Les apprenants peuvent également échanger avec leurs pairs et l'enseignant via notre plateforme, pour discuter des questions de cours, des travaux à effectuer, des difficultés rencontrées ou des avancées réalisées</p>
+            <p>Nous sommes convaincus que notre approche pédagogique inversée permettra aux apprenants d'acquérir de nouvelles compétences et de développer leur expertise dans leur domaine d'activité. Rejoignez-nous dès maintenant et commencez votre parcours de formation en toute confiance !</p>
         
-        <p>Inscrivez-vous dès maintenant pour commencer votre voyage de formation en ligne avec nous.</p>
-        <a class="template_BTN" href="index.php?action=loginAccount" >Inscrivez-vous maintenant</a>
-    </section>
-    
-</main>
+        
+        </section>
 
+       
+
+    </main>
+</body>
 <?php 
     $content=ob_get_clean();
     $titre = "StudentForm - Formation en ligne - Accueil";

@@ -123,11 +123,22 @@ body {
     width: 125px;
     height: 125px;
     border-radius: 100px; 
-    border: solid 2px grey;
+    border: solid 2px black;
+    margin-bottom: 1rem;
 }
 
 li{
     list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+li>img{
+    height: 32px ;
+    width: 32px;
+    margin-right: 1rem;
 }
 
 a {

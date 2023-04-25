@@ -4,7 +4,8 @@ require_once "./model/class/Formation.class.php";
 require_once "./model/class/Sequence.class.php";
 require_once "./model/class/Ressource.class.php";
 require_once "./model/class/Inscription.class.php";
-require_once "./outils/outil.php";
+require_once "./outils/outil.php";?>
+<?php
 class FormationManager extends ConnexionBDD {
     private $formations;
     
@@ -19,7 +20,7 @@ class FormationManager extends ConnexionBDD {
         $bddFormation = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         foreach($bddFormation as $formation){
-            $f=new Formation($formation['formation_id'], $formation['fk_user_id'], $formation['libelle'], $formation['acronyme'], $formation['description'], $formation['img'], $formation['intro'], "");
+            $f=new Formation($formation['formation_id'], $formation['fk_user_id'], $formation['libelle'], $formation['acronyme'], $formation['description'], $formation['img'], $formation['video'], "");
             $this->formations[]=$f;
         }
         return $this->formations;
@@ -36,7 +37,7 @@ class FormationManager extends ConnexionBDD {
         $formation = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();  
         
-        $f = new Formation($formation['formation_id'], $formation['fk_user_id'], $formation['libelle'], $formation['acronyme'], $formation['description'], $formation['img'], $formation['intro']);
+        $f = new Formation($formation['formation_id'], $formation['fk_user_id'], $formation['libelle'], $formation['acronyme'], $formation['description'], $formation['img'], $formation['video']);
             $s = $this->displaySequenceByFormationId($formation_id);
             $f -> setTab_sequence($s);
         return $f; 
@@ -67,13 +68,24 @@ class FormationManager extends ConnexionBDD {
         $ressourceList = array();
         
         foreach ($bddRessource as $ressource){
-            $r = new Ressource($ressource['ressource_id'], $ressource['fk_formation_id'], $ressource['fk_sequence_id'], $ressource['link']);
+            $r = new Ressource($ressource['ressource_id'], $ressource['fk_formation_id'], $ressource['fk_sequence_id'], $ressource['libelle'], $ressource['link'], $ressource['extension']);
             $ressourceList[]=$r;
         }
         return $ressourceList ; 
     }
     
-    
+    function displayMyCreatedTrainings($user_id){
+        $stmt = $this->getBdd()->prepare("SELECT * FROM formation WHERE fk_user_id = :user_id");
+        $stmt->bindValue(":user_id",$user_id,PDO::PARAM_INT);
+        $stmt->execute();
+        $bddFormation = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        foreach($bddFormation as $formation){
+            $f=new Formation($formation['formation_id'], $formation['fk_user_id'], $formation['libelle'], $formation['acronyme'], $formation['description'], $formation['img'], $formation['video'], "");
+            $this->formations[]=$f;
+        }
+        return $this->formations;
+    }
     
     
     
@@ -103,15 +115,15 @@ class FormationManager extends ConnexionBDD {
     function addFormation($formation){
         $pdo = $this->getBdd();
         $req = "
-        INSERT INTO formation (fk_user_id, libelle, acronyme, description, img, intro)
-        VALUES (:fk_user_id, :libelle, :acronyme, :description, :img, :intro)";
+        INSERT INTO formation (fk_user_id, libelle, acronyme, description, img, video)
+        VALUES (:fk_user_id, :libelle, :acronyme, :description, :img, :video)";
         $stmt = $pdo->prepare($req);
         $stmt->bindValue(":fk_user_id",$formation->getFk_user_id(),PDO::PARAM_INT);
         $stmt->bindValue(":libelle",$formation->getLibelle(),PDO::PARAM_STR);
         $stmt->bindValue(":acronyme",$formation->getAcronyme(),PDO::PARAM_STR);
         $stmt->bindValue(":description",$formation->getDescription(),PDO::PARAM_STR);
         $stmt->bindValue(":img",$formation->getImg(),PDO::PARAM_STR);
-        $stmt->bindValue(":intro",$formation->getIntro(),PDO::PARAM_STR);
+        $stmt->bindValue(":video",$formation->getVideo(),PDO::PARAM_STR);
         $stmt->execute();
         $stmt->closeCursor();
     }
@@ -152,7 +164,7 @@ class FormationManager extends ConnexionBDD {
     function addRessource($ressource){
         $pdo = $this->getBdd();
         $req = "
-        INSERT INTO ressource (fk_formation_id, sequence_id, libelle, link, extension)
+        INSERT INTO ressource (fk_formation_id, fk_sequence_id, libelle, link, extension)
         VALUES (:fk_formation_id, :fk_sequence_id, :libelle, :link, :extension)";
         $stmt = $pdo->prepare($req);
         $stmt->bindValue(":fk_formation_id",$ressource->getFk_formation_id(),PDO::PARAM_INT);

@@ -20,8 +20,8 @@
     align-items: center;
 }
 
-.text_intro> h1, h2, p{
-    margin-bottom: 20px;
+.forma{
+    padding: 10px;
 }
 
 .text_intro>a{
@@ -70,4 +70,25 @@
     border-radius: 50px;
     color: white;
     cursor: pointer;
+}
+
+.seq{
+    margin-bottom: 15px;
+}
+
+.ressource{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 10px 0px ;
+}
+
+.template_BTN_dwl{
+    
 }

@@ -21,7 +21,7 @@ class FormationsControleur{
      */
     function displayAllFormation(){
         $tabFormations=$this->formationManager->displayAllFormation();
-        require 'vue/formation/displayAllFormation.view.php';
+        require 'vue/formation/display/displayAllFormation.view.php';
     }
     
     /**
@@ -29,7 +29,7 @@ class FormationsControleur{
      */
     function displayMyCreatedTrainings($user_id){
         $tabFormations=$this->formationManager->displayMyCreatedTrainings($user_id);
-        require 'vue/formation/displayMyCreatedTraining.view.php';
+        require 'vue/formation/display/displayMyCreatedTraining.view.php';
     }    
     
     /**
@@ -37,7 +37,7 @@ class FormationsControleur{
      */
     function displayFormationMore($formation_id){
         $formation = $this->formationManager->displayFormationById($formation_id);
-        require 'vue/formation/displayDetailFormation.view.php';
+        require 'vue/formation/display/displayDetailFormation.view.php';
     }        
     
     
@@ -45,7 +45,7 @@ class FormationsControleur{
      * Création d'une formation (VUE ADMIN / RESPONSABLE)
      */
     function displayCreateFormation(){
-        require 'vue/formation/createFormation.view.php';
+        require 'vue/formation/create/createFormation.view.php';
     }
 
     /**
@@ -69,7 +69,7 @@ class FormationsControleur{
         
         $formation = new Formation("",$_SESSION['id'], $libelle, $acronyme, $description, $nomImageAjoute, $nomVideoAjoute);
         $this->formationManager->addFormation($formation);
-        header("Location: index.php");
+        header("Location: index.php?action=displayMenuCreation");
     }
     
     /**
@@ -78,7 +78,7 @@ class FormationsControleur{
      */
     function displayCreateSequence($formation_id){
         $formation = $this->formationManager->displayFormationById($formation_id);
-        require 'vue/formation/createSequence.view.php';
+        require 'vue/formation/create/createSequence.view.php';
     }
     
     /**
@@ -96,7 +96,7 @@ class FormationsControleur{
     
     function displayMyTraining($user_id){
         $tabInscription = $this->formationManager->displayMyTraining($user_id);
-        require 'vue/formation/displayMyTraining.view.php';        
+        require 'vue/formation/display/displayMyTraining.view.php';        
     }
     
     function registerTraining($formation_id){    
@@ -112,7 +112,7 @@ class FormationsControleur{
     }
     
     function createRessource(){
-        require 'vue/formation/createRessource.view.php';
+        require 'vue/formation/create/createRessource.view.php';
     }
     
     function validCreateRessource($formation_id,$sequence_id, $libelle, $extension){

@@ -9,7 +9,7 @@
         <div class="item">
           <a href="index.php?action=displayMyTraining">
             <div class="item-image">
-              <img src="./public/Obligatory/education.png" width="64" height="64">
+              <img src="./public/Obligatory/icon_education.png" width="64" height="64">
             </div>
             <div class="item-text">My Training</div>
             <div class="item-link-desc">Access...</div>
@@ -19,7 +19,7 @@
         <div class="item">
           <a href="index.php?action=displayMyAccount">
             <div class="item-image">
-              <img src="./public/Obligatory/account.png" width="64" height="64">
+              <img src="./public/Obligatory/icon_account.png" width="64" height="64">
             </div>
             <div class="item-text">My Account</div>
             <div class="item-link-desc">Access...</div>
@@ -30,7 +30,7 @@
             <div class="item">
               <a href="index.php?action=displayMenuCreation">
                 <div class="item-image">
-                  <img src="./public/Obligatory/bdd.png" width="64" height="64">
+                  <img src="./public/Obligatory/icon_bdd.png" width="64" height="64">
                 </div>
                 <div class="item-text">Creation Area</div>
                 <div class="item-link-desc">Access...</div>

@@ -11,28 +11,47 @@
   <script src="./outils/script.js"></script>
 </head>
 
-<body>
+<body class="nav_body">
     <header>
-        <img src="./public/Obligatory/StudentFormFinal.png" alt="LOGO" width="300px" height="100px">
-        <nav>
-            <ul>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="index.php?action=displayAllFormations">Formations</a></li>
-                
-                <?php if (Securite::isConnected()){ ?>
-                    <li><a href="index.php?action=displayMenuAccount">Mon compte</a></li>
-                <?php }else{ ?>
-                    <li><a href="index.php?action=loginAccount">Se Connecter</a></li>
-                <?php } ?>      
-                    
-                    
-                <?php if (Securite::verifAccessAdmin()){ ?>
-                    <li><a class="dropdown-item" href="index.php?action=displayAllUsers">TabUsers</a></li>
-                    <li><a class="dropdown-item" href="index.php?action=displayAllTabFormation">TabFormation</a></li>
-                <?php } ?>
-                    
-            </ul>
-        </nav>
+        <div class="header_logo">
+            <a href="index.php"><img src="./public/Obligatory/logo_cafoma.png"></a>
+        </div>
+        <div class="nav">
+            <div class="nav_item">
+                <a href="index.php?action=displayAllFormations">
+                    <div class="item-text">Formations</div>
+                </a>
+            </div>
+            
+            <?php if (Securite::isConnected()){ ?>
+                <div class="nav_item">
+                    <a href="index.php?action=displayMenuAccount">
+                        <div class="item-text">Mon compte</div>
+                    </a>
+                </div>
+            <?php }else{ ?>
+                <div class="nav_item">
+                    <a href="index.php?action=loginAccount">
+                        <div class="item-text">Se connecter</div>
+                    </a>
+                </div>            
+            <?php } ?>
+            
+            <?php if (Securite::verifAccessAdmin()){ ?>
+                <div class="nav_item">
+                  <a href="index.php?action=displayAllUsers">
+                    <div class="item-text">TabUsers</div>
+                  </a>
+                </div>
+
+                <div class="nav_item">
+                   <a href="index.php?action=displayAllTabFormation">
+                     <div class="item-text">TabFormation</div>
+                   </a>
+                </div>   
+            <?php } ?>
+  </div>
+        
     </header>
     
     <div>
@@ -40,7 +59,14 @@
     </div>
     
     <footer>
-        <p>Dameli © 2023 Formation en ligne. Tous droits réservés.</p>
+        <p><i>DameLi © 2023 Formation en ligne. Tous droits réservés.</i></p>
+        <div class="doc">
+            <a>Mentions Légales</a>
+            <p> | </p>
+            <a>Cookies</a>
+            <p> | </p>
+            <a>Données personnelles</a>
+        </div>
     </footer> 
     
 </body>
