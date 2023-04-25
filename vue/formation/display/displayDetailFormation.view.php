@@ -22,40 +22,46 @@
 
     </section>
 
-	<section id="cards">
-		<h1>Séquences de la formation</h1>
+    <?php if (Securite::isConnected()){ ?>
+        <section id="cards">
+                <h1>Séquences de la formation</h1>
                     <div class="cartes">
-                        
+
                 <?php $tabSequence = $formation->getTab_sequence(); ?>
-                
+
                 <?php $numSeq = 0; ?>    
-                        
-                        <?php foreach($tabSequence as $sequence) {?>
-                        <?php $numSeq++ ?>
-                            <div class="carte">  
-                                <h2 class="seq">Séquence n°<?php echo $numSeq; ?></h2>
-                                <h3 class="seq"><?= $sequence->getLibelle(); ?></h3>
-                                <p class="seq"><?= $sequence->getDescription(); ?></p>
-                                
-                                
-                                <?php $tabRessource = $sequence->getTab_ressource(); ?>  
-                                <?php foreach($tabRessource as $ressource) {?>
-                                    <div class="ressource">
-                                        <?php $extension = $ressource->getExtension(); ?>
-                                        <?php if ($extension === "mp4"){ ?><div><p>Video | <?= $ressource->getLibelle(); ?></p></div><?php } ?>
-                                        <?php if ($extension === "pdf"){ ?><div><p>PDF | <?= $ressource->getLibelle(); ?></p></div><?php } ?>
-                                        <?php if ($extension === "zip"){ ?><div><p>Archive | <?= $ressource->getLibelle(); ?></p></div><?php } ?>
-                                        
-                                        <?php if ($extension === "mp4"){ ?>
-                                            <div><a href="index.php?action=displayVideo&id=<?php echo $ressource->getRessource_id(); ?>">Lancer la vidéo</a></div>
-                                        <?php }else{ ?>
-                                            <div class="template_BTN_dwl"><a href="public/Training/Ressource/<?php echo $ressource->getLink(); ?>">TEst</a></div>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        <?php } ?>
-	</section>
+
+                    <?php foreach($tabSequence as $sequence) {?>
+                    <?php $numSeq++ ?>
+                        <div class="carte">  
+                            <h2 class="seq">Séquence n°<?php echo $numSeq; ?></h2>
+                            <h3 class="seq"><?= $sequence->getLibelle(); ?></h3>
+                            <p class="seq"><?= $sequence->getDescription(); ?></p>
+
+
+                            <?php $tabRessource = $sequence->getTab_ressource(); ?>  
+                            <?php foreach($tabRessource as $ressource) {?>
+                                <div class="ressource">
+                                    <?php $extension = $ressource->getExtension(); ?>
+                                    <?php if ($extension === "mp4"){ ?><div><p>Video | <?= $ressource->getLibelle(); ?></p></div><?php } ?>
+                                    <?php if ($extension === "pdf"){ ?><div><p>PDF | <?= $ressource->getLibelle(); ?></p></div><?php } ?>
+                                    <?php if ($extension === "zip"){ ?><div><p>Archive | <?= $ressource->getLibelle(); ?></p></div><?php } ?>
+
+                                    <?php if ($extension === "mp4"){ ?>
+                                        <div><a href="index.php?action=displayVideo&id=<?php echo $ressource->getRessource_id(); ?>">Lancer la vidéo</a></div>
+                                    <?php }else{ ?>
+                                        <div class="template_BTN_dwl"><a href="public/Training/Ressource/<?php echo $ressource->getLink(); ?>"><img src="./public/Obligatory/icon_loupe.png" height="30px" width="30px"></a></div>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+        </section>
+    <?php }else { ?>
+        <section>
+            <h2 class="noco">Connectez et inscrivez-vous pour accéder aux ressources de la formation !</h2>
+        </section>
+    <?php } ?>
 </body>
 
 <?php

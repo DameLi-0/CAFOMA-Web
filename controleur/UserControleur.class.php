@@ -57,7 +57,7 @@ class UserControleur{
 
     function displayAllUsers(){
         $tabUsers = $this->userManager->displayAllUser();
-        require 'vue/user/adminTabAllUser.view.php';
+        require 'vue/admin/adminTabAllUser.view.php';
     }
     
     function displayAccount($login){

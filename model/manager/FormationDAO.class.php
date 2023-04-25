@@ -90,7 +90,7 @@ class FormationManager extends ConnexionBDD {
     
     
 /* --------------------------- AFFICHAGE DES FORMATIONS INSCRITES --------------------------- */        
-    function displayMyTraining($user_id){
+    /*function displayMyTraining($user_id){
         $stmt = $this->getBdd()->prepare("SELECT * FROM inscription WHERE fk_user_id = :user_id");
         $stmt->bindValue(":user_id",$user_id,PDO::PARAM_INT);
         $stmt->execute();
@@ -102,8 +102,22 @@ class FormationManager extends ConnexionBDD {
             $this->inscriptions[]=$i;
         }
         return $this->inscriptions;
-    }
+    }*/
 
+    function displayMyTraining($user_id){
+        $stmt = $this->getBdd()->prepare("SELECT inscription.fk_formation_id, inscription.fk_user_id, formation.formation_id, formation.libelle FROM inscription INNER JOIN formation ON inscription.fk_formation_id = formation.formation_id WHERE inscription.fk_user_id = 27;");
+        $stmt->bindValue(":user_id",$user_id,PDO::PARAM_INT);
+        $stmt->execute();
+        $bddInscription = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        
+        foreach($bddInscription as $inscription){
+            $i=new Inscription($inscription['fk_formation_id'], $inscription['fk_user_id'], $inscription['date']);
+            $this->inscriptions[]=$i;
+        }
+        return $this->inscriptions;
+    }
+    
 
     /* --------------------------- AJOUT EN BASE DE DONNEE --------------------------- */
     
@@ -175,5 +189,7 @@ class FormationManager extends ConnexionBDD {
         $stmt->execute();
         $stmt->closeCursor();          
     }
+    
+    
 }    
 ?>

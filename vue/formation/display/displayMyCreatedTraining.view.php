@@ -15,7 +15,7 @@
                 <h3><?php echo $formation->getAcronyme(); ?></h3>
                 <h4><?php echo $formation->getDescription(); ?></h4>
                 <br>
-                <a href="index.php?action=createSequence&formation_id=<?php echo $formation->getFormation_id(); ?>"><img src="./public/Obligatory/edit.png" width="30px" height="30px"></a>
+                <a href="index.php?action=createSequence&formation_id=<?php echo $formation->getFormation_id(); ?>"><img src="./public/Obligatory/icon_edit.png" width="30px" height="30px"></a>
 
             </div>
         <?php } ?>    

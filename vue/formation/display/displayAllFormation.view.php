@@ -20,10 +20,8 @@
                     <?php if(Securite::isConnected()){ ?>
                             <a class="template_BTN" href="index.php?action=addTraining&id=<?php echo $formation->getFormation_id(); ?>">M'inscrire</a>
                     <?php } ?>
-                    
+         
                 </div>
-                <h5>Crée par <?php echo $formation->getFk_user_id();?></h5>
-
             </div>
         <?php } ?>    
         </div>    

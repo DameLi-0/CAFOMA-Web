@@ -40,7 +40,7 @@
            <div class="item">
               <a href="index.php?action=displayMyCreatedTrainings">
                 <div class="item-image">
-                  <img src="./public/Obligatory/Save.png" width="64" height="64">
+                  <img src="./public/Obligatory/icon_save.png" width="64" height="64">
                 </div>
                 <div class="item-text">Save Area</div>
                 <div class="item-link-desc">Access...</div>

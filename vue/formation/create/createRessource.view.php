@@ -2,7 +2,6 @@
 
 <head>
     <link rel="stylesheet" href="./css/form.style.css" />
-    <script src="./outils/script.js"></script>
 </head>
 
 

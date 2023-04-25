@@ -89,6 +89,11 @@
     margin: 10px 0px ;
 }
 
-.template_BTN_dwl{
-    
+.noco{
+    text-align: center;
+    margin: 3rem 33%;
+    background-color: #DCDCDC;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid;
 }

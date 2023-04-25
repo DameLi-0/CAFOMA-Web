@@ -2,7 +2,6 @@
 
 <head>
     <link rel="stylesheet" href="./css/form.style.css" />
-    <script src="./outils/script.js"></script>
 </head>
 
 
@@ -40,7 +39,7 @@
                         
                         <h2>Séquence n°<?php echo $numSeq; ?></h2>
                         <h3><?= $sequence->getLibelle(); ?></h3>
-                        <a href="index.php?action=createRessource&formation_id=<?php echo $sequence->getFk_formation_id(); ?>&sequence_id=<?php echo $sequence->getSequence_id(); ?>"><img src="./public/Obligatory/edit.png" width="30px" height="30px"></a>
+                        <a href="index.php?action=createRessource&formation_id=<?php echo $sequence->getFk_formation_id(); ?>&sequence_id=<?php echo $sequence->getSequence_id(); ?>"><img src="./public/Obligatory/icon_edit.png" width="30px" height="30px"></a>
                     </div>
                 <?php } ?>
 	</section>    

@@ -42,11 +42,11 @@ class Formation implements JsonSerializable{
     public function getImg(){return $this->img;}
     public function setImg($img){$this->img = $img;}  
     
-    public function getTab_sequence(){return $this->tab_sequence;}
-    public function setTab_sequence($tab_sequence){$this->tab_sequence = $tab_sequence;}     
-    
     public function getVideo(){return $this->video;}
-    public function setVideo($video){$this->video = $video;}        
+    public function setVideo($video){$this->video = $video;}      
+    
+    public function getTab_sequence(){return $this->tab_sequence;}
+    public function setTab_sequence($tab_sequence){$this->tab_sequence = $tab_sequence;}       
 
     public function jsonSerialize() {
         return $this->array;

@@ -19,7 +19,7 @@ class FormationsControleur{
     /**
      * Affichage de toute les formations (VUE ALL)
      */
-    function displayAllFormation(){
+    function displayAllFormation(){        
         $tabFormations=$this->formationManager->displayAllFormation();
         require 'vue/formation/display/displayAllFormation.view.php';
     }
@@ -35,7 +35,7 @@ class FormationsControleur{
     /**
      * Affichage de la vue détailer de la formation (VUE ALL)
      */
-    function displayFormationMore($formation_id){
+    function displayFormationMore($formation_id){  
         $formation = $this->formationManager->displayFormationById($formation_id);
         require 'vue/formation/display/displayDetailFormation.view.php';
     }        
@@ -125,5 +125,10 @@ class FormationsControleur{
         $this->formationManager->addRessource($ressource);
         header("Location: index.php?action=createSequence&formation_id=".$formation_id);       
     }    
+    
+    function displayAdminTabAllFormation(){
+        $tabFormations=$this->formationManager->displayAllFormation();
+        require 'vue/admin/adminTabAllFormation.view.php';
+    }
 }
     

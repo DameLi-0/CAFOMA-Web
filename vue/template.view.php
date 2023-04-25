@@ -40,13 +40,13 @@
             <?php if (Securite::verifAccessAdmin()){ ?>
                 <div class="nav_item">
                   <a href="index.php?action=displayAllUsers">
-                    <div class="item-text">TabUsers</div>
+                    <div class="item-text">AdminUser</div>
                   </a>
                 </div>
 
                 <div class="nav_item">
-                   <a href="index.php?action=displayAllTabFormation">
-                     <div class="item-text">TabFormation</div>
+                   <a href="index.php?action=displayAdminTabAllFormation">
+                     <div class="item-text">AdminTraining</div>
                    </a>
                 </div>   
             <?php } ?>
@@ -58,16 +58,15 @@
         <?php echo $content ?>
     </div>
     
+</body>
     <footer>
         <p><i>DameLi © 2023 Formation en ligne. Tous droits réservés.</i></p>
         <div class="doc">
-            <a>Mentions Légales</a>
-            <p> | </p>
-            <a>Cookies</a>
-            <p> | </p>
-            <a>Données personnelles</a>
+            <a class="doc_item">Mentions Légales</a>
+            <p class="doc_sep"> | </p>
+            <a class="doc_item">Cookies</a>
+            <p class="doc_sep"> | </p>
+            <a class="doc_item">Données personnelles</a>
         </div>
     </footer> 
-    
-</body>
 </html>
