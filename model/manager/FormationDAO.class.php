@@ -1,4 +1,3 @@
-@@ -1,195 +0,0 @@
 <?php
 require_once "./model/ConnexionBDD.class.php";
 require_once "./model/class/Formation.class.php";
