@@ -8,7 +8,9 @@
         <h1 class="h1">Liste des formations</h1>
         
         <div class="cards">
-        <?php foreach($tabFormations as $formation) {?>    
+            <?php if(is_array($tabFormations)){ ?>
+            <?php foreach($tabFormations as $formation) {?>    
+           
             <div class="card">
                 <img src="public/Training/Image/<?php echo $formation->getImg(); ?>" width="100px" height="100px">
                 <h2><?php echo $formation->getLibelle(); ?></h2>
@@ -23,7 +25,12 @@
          
                 </div>
             </div>
-        <?php } ?>    
+            <?php } }else{?>
+            <div class="foreachVide">
+                <img src="public/Obligatory/img_tab_vide.png" width="450px" height="450px">
+                <p class="foreachVide_text">Oupss... On dirait qu'il n'y a pas de formation, repasse plus tard ou contact nous ^^</p>
+            </div>
+            <?php }?>    
         </div>    
         
     </section>

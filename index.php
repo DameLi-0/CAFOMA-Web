@@ -76,7 +76,7 @@ try{
             /**
              *  Route vers l'affichage du formulaire de création de ressource
              */
-            case "createRessource": $formationControleur->createRessource();
+            case "createRessource": $formationControleur->displayCreateRessource($_GET['sequence_id']);
                 break;                
             
              /**
@@ -91,6 +91,18 @@ try{
             case "displayAdminTabAllFormation": $formationControleur->displayAdminTabAllFormation();
                 break;              
 
+            case "displayVideo": $formationControleur->displayVideo($_GET['link']);
+                break;             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             /* --------------------- USER --------------------- */

@@ -48,7 +48,7 @@
                                     <?php if ($extension === "zip"){ ?><div><p>Archive | <?= $ressource->getLibelle(); ?></p></div><?php } ?>
 
                                     <?php if ($extension === "mp4"){ ?>
-                                        <div><a href="index.php?action=displayVideo&id=<?php echo $ressource->getRessource_id(); ?>">Lancer la vidéo</a></div>
+                                        <div><a href="index.php?action=displayVideo&link=<?php echo $ressource->getLink(); ?>"><img src="./public/Obligatory/icon_video.png" height="30px" width="30px"></a></div>
                                     <?php }else{ ?>
                                         <div class="template_BTN_dwl"><a href="public/Training/Ressource/<?php echo $ressource->getLink(); ?>"><img src="./public/Obligatory/icon_loupe.png" height="30px" width="30px"></a></div>
                                     <?php } ?>

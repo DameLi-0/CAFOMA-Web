@@ -25,7 +25,7 @@
         <div style="margin: 0;">
             <label class="form-label" for="img">Photo de profil</label>
             <p style="color: lightgray; margin: 0;">Aperçu</p>
-            <img src="public/User/<?php echo $user->getImg(); ?>" height="50px" width="50px">
+            <img src="public/User/<?php echo $user->getImg(); ?>" alt="Photo de profil" height="50px" width="50px">
             <input class="form-control" type="file" id="img" name="img">
         </div>
 

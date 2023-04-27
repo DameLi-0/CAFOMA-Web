@@ -23,7 +23,7 @@ class UserControleur{
         
         /* GERER L'IMAGE */
         $file = $_FILES['img'];
-        $dir = "public/PPusers/";
+        $dir = "public/User/";
         $nomImageAjoute = ajouterImage($file, $dir);
         
         /* GERER LE MOT DE PASSE */

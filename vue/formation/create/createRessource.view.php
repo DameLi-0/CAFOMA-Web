@@ -11,10 +11,10 @@
         <h1>Ajouter une ressource</h1>
         <form method="POST" action="index.php?action=validCreateRessource" enctype="multipart/form-data">
             <input type="hidden" name="formation_id" value="<?=$_GET['formation_id']?>">
-            <input type="hidden" name="sequence_id" value="<?=$_GET['sequence_id']?>">
+            <input type="hidden" name="sequence_id" value="<?=$sequence_id?>">
 
             <label for="libelle">Libelle</label>
-            <input type="text" id="libelle" name="libelle" >    
+            <input type="text" id="libelle" name="libelle" placeholder="Libelle">    
             
             <label for="ressource">Ressource</label>
             <input type="file" id="ressource" name="ressource" >    
@@ -32,6 +32,31 @@
             
             <input class="template_BTN" type="submit" value="Create">
         </form>
+    </div>
+    
+
+    
+    <div class="main">
+        <section id="cards">
+        <h1>Ressources </h1>
+            <div class="cartes">
+
+  
+                <?php foreach($tabRessource as $ressource) {?>
+                
+                    <?php $extension = $ressource->getExtension(); ?>
+                    <?php if ($extension === "mp4"){ $type = "Vidéo"; } ?>
+                    <?php if ($extension === "pdf"){ $type = "PDF"; } ?>
+                    <?php if ($extension === "zip"){ $type = "Archive"; } ?>
+                
+                    <div class="carte">  
+                        <h2><?php echo $type ?></h2>
+                        <h3><?= $ressource->getLibelle(); ?></h3>
+                        <a><img src="../../../public/Obligatory/icon_trash.png"></a>
+                    </div>
+                <?php } ?>
+            </div>
+	</section>    
     </div>
     
 </body>

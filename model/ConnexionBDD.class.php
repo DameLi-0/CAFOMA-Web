@@ -14,7 +14,7 @@ abstract class ConnexionBDD {
         return self::$pdo;
     }
     
-    function getPdo(){
+    public static function getPdo(){
         $login="root";
         $mdp="";
         $bd="cafoma";

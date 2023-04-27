@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/Projets/CAFOMA/index.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/model/manager/FormationDAO.class.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/vue/formation/display/displayAllFormation.view.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/model/manager/UserDAO.class.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/vue/formation/display/displayMyTraining.view.php</file>
             <file>file:/C:/wamp64/www/Projets/CAFOMA/controleur/UserControleur.class.php</file>
-            <file>file:/C:/wamp64/www/Projets/CAFOMA/vue/user/displayAccount.view.php</file>
-            <file>file:/C:/wamp64/www/Projets/CAFOMA/vue/user/editAccount.view.php</file>
+            <file>file:/C:/wamp64/www/Projets/CAFOMA/controleur/FormationControleur.class.php</file>
         </group>
     </open-files>
 </project-private>

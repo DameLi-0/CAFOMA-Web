@@ -134,7 +134,8 @@ class FormationsControleur{
     /**
      * Affichage du formulaire de création de ressource
      */
-    function createRessource(){
+    function displayCreateRessource($sequence_id){
+        $sequence = $this->formationManager->displayRessource($sequence_id);
         require 'vue/formation/create/createRessource.view.php';
     }
     
@@ -167,6 +168,10 @@ class FormationsControleur{
     function displayAdminTabAllFormation(){
         $tabFormations=$this->formationManager->displayAllFormation();
         require 'vue/admin/adminTabAllFormation.view.php';
+    }
+    
+    function displayVideo($link){
+        require 'vue/formation/display/displayVideo.view.php';
     }
 }
     
