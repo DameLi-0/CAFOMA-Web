@@ -4,7 +4,16 @@ require_once "./model/class/User.class.php";
 
 
 class UserManager extends ConnexionBDD {
-    private $users;
+    private static $_instance = null;
+
+    private function __construct() {}
+    
+    public static function getInstance() {
+        if(is_null(self::$_instance)){
+            self::$_instance = new UserManager();  
+        }
+        return self::$_instance;
+    }
     
     public function getUser(){
         return $this->users;
@@ -150,5 +159,15 @@ class UserManager extends ConnexionBDD {
         $email = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();  
         return $email['email'];        
+    }
+    
+    function getUserIdByLogin($login){
+        $stmt = $this->getBdd()->prepare("SELECT 'user_id' FROM user WHERE login=:login");
+        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();  
+        $user_id = $user['user_id'];
+        return $user_id; 
     }
 } 

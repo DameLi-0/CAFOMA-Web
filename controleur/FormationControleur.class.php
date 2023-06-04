@@ -6,7 +6,7 @@ class FormationsControleur{
     private $formationManager;
     
     public function __construct(){
-        $this->formationManager = new FormationManager();
+        $this->formationManager = FormationManager::getInstance();
     }
     
     /**
@@ -122,7 +122,7 @@ class FormationsControleur{
      */
     function registerTraining($formation_id){    
         $fk_user_id = $_SESSION['id'];
-        $inscription = new Inscription($formation_id, $fk_user_id);
+        $inscription = new Inscription($formation_id, $fk_user_id, "");
         $this->formationManager->registerTraining($inscription);
         header("Location: index.php");       
     }
@@ -175,5 +175,15 @@ class FormationsControleur{
     function displayVideo($link){
         require 'vue/formation/display/displayVideo.view.php';
     }
+    
+    function deleteInsc($formation_id){
+        $this->formationManager->deleteInsc($formation_id);
+        header("Location: index.php?action=displayMyTraining"); 
+    }
+    
+    function deleteFormationAdmin($formation_id){
+        $this->formationManager->deleteFormation($formation_id);
+        header("Location: index.php?action=displayAdminTabAllFormation"); 
+    }    
 }
     

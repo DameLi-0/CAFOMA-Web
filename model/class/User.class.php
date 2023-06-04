@@ -45,7 +45,16 @@ class User implements JsonSerializable{
     public function setValid($valid){$this->valid = $valid;}    
     
     public function jsonSerialize() {
-        return $this->array;
+        return [
+            'user_id' => $this->user_id,
+            'login' => $this->login,
+            'mdp' => $this->mdp,
+            'email' => $this->email,
+            'description' => $this->description,
+            'img' => $this->img,
+            'role' => $this->role,
+            'valid' => $this->valid
+        ];
     }
 
 }

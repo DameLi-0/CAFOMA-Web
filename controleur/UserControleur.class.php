@@ -7,7 +7,7 @@ class UserControleur{
     private $userManager;
 
     public function __construct(){
-        $this->userManager = new UserManager();
+        $this->userManager = UserManager::getInstance();
     }
     
     function displayLoginAccount(){

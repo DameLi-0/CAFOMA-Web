@@ -49,7 +49,16 @@ class Formation implements JsonSerializable{
     public function setTab_sequence($tab_sequence){$this->tab_sequence = $tab_sequence;}       
 
     public function jsonSerialize() {
-        return $this->array;
+        return [
+            'formation_id' => $this->formation_id,
+            'fk_user_id' => $this->fk_user_id,
+            'libelle' => $this->libelle,
+            'acronyme' => $this->acronyme,
+            'description' => $this->description,
+            'img' => $this->img,
+            'video' => $this->video    
+        ];
     }
+
 
 }

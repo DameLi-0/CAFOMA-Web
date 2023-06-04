@@ -36,8 +36,8 @@
                         <td><?php echo $formation->getDescription(); ?></td>
                         <td><?php echo $formation->getImg(); ?></td>
                         <td><?php echo $formation->getVideo(); ?></td>
-                        <td><a href="index.php?action=editFormation&id=<?= $formation->getFormation_id(); ?>"><img src="./public/Obligatory/icon_edit.png" width="32px" height="32px"></a>
-                            <a href="index.php?action=deleteFormation&id=<?= $formation->getFormation_id(); ?>"><img src="./public/Obligatory/icon_trash.png" width="32px" height="32px"></a></td>
+                        <td><!--<a href="index.php?action=editFormation&formation_id=<?php //$formation->getFormation_id(); ?>"><img src="./public/Obligatory/icon_edit.png" width="32px" height="32px"></a>-->
+                            <a href="index.php?action=deleteFormationAdmin&formation_id=<?= $formation->getFormation_id(); ?>"><img src="./public/Obligatory/icon_trash.png" width="32px" height="32px"></a></td>
                     </tr>
                 <?php } ?>
 

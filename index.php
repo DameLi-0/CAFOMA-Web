@@ -60,9 +60,11 @@ try{
             case "displayVideo": $formationControleur->displayVideo($_GET['link']);
                 break;             
             
+            case "deleteInsc": $formationControleur->deleteInsc($_GET['formation_id']);
+                break;               
             
-            
-            
+            case "deleteFormationAdmin": $formationControleur->deleteFormationAdmin($_GET['formation_id']);
+                break;              
             
             
             

@@ -20,7 +20,7 @@
                     <a class="template_BTN"  href="index.php?action=displayFormationMore&formation_id=<?= $formation->getFormation_id();?>">En savoir +</a>
                     
                     <?php if(Securite::isConnected()){ ?>
-                            <a class="template_BTN" href="index.php?action=addTraining&id=<?php echo $formation->getLibelle(); ?>">M'inscrire</a>
+                            <a class="template_BTN" href="index.php?action=addTraining&id=<?php echo $formation->getFormation_id(); ?>">M'inscrire</a>
                     <?php } ?>
          
                 </div>

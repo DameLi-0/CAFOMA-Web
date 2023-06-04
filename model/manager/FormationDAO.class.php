@@ -9,7 +9,17 @@ require_once "./outils/outil.php";?>
 
 <?php
 class FormationManager extends ConnexionBDD {
-    private $formations;
+    private static $_instance = null;
+    
+    private function __construct() {}
+    
+    
+    public static function getInstance() {
+        if(is_null(self::$_instance)) {
+            self::$_instance = new FormationManager();  
+        }
+        return self::$_instance;
+    } 
     
     public function getFormations(){
         return $this->formations;
@@ -105,8 +115,8 @@ class FormationManager extends ConnexionBDD {
         $stmt->execute();
         $bddInscription = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
-        
         $inscriptionList = array();
+        
         foreach($bddInscription as $inscription){
             $i=new Inscription($inscription['fk_formation_id'], $inscription['fk_user_id'], $inscription['libelle']);
             $inscriptionList[]=$i;
@@ -114,7 +124,7 @@ class FormationManager extends ConnexionBDD {
          return $inscriptionList;
     }
     
-
+    
     /* --------------------------- AJOUT EN BASE DE DONNEE --------------------------- */
     
     
@@ -178,6 +188,22 @@ class FormationManager extends ConnexionBDD {
         $stmt->closeCursor();          
     }
     
-    
+    function deleteInsc($formation_id){
+        $pdo = $this->getBdd();
+        $req = "DELETE FROM `inscription` WHERE fk_formation_id = :formation_id";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":formation_id",$formation_id,PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->closeCursor();  
+    }
+
+    function deleteFormation($formation_id){
+        $pdo = $this->getBdd();
+        $req = "DELETE FROM `formation` WHERE formation_id = :formation_id";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":formation_id",$formation_id,PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->closeCursor();  
+    }
 }    
 ?>

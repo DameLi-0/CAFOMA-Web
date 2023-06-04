@@ -34,32 +34,7 @@
             <input class="template_BTN" type="submit" value="Create">
         </form>
     </div>
-    
 
-    
-    <div class="main">
-        <section id="cards">
-        <h1>Ressources </h1>
-            <div class="cartes">
-
-                        <?php $tabRessource = $sequence->getTab_ressource();   
-                
-                         foreach($tabRessource as $ressource) {
-
-                         $extension = $ressource->getExtension(); 
-                         if ($extension === "mp4"){ $type = "Vidéo"; } 
-                         if ($extension === "pdf"){ $type = "PDF"; } 
-                         if ($extension === "zip"){ $type = "Archive"; } ?>
-
-                        <div class="carte">  
-                            <h2><?php echo $type ?></h2>
-                            <h3><?= $ressource->getLibelle(); ?></h3>
-                            <a><img src="../../../public/Obligatory/icon_trash.png"></a>
-                        </div>
-                <?php } ?>
-            </div>
-	</section>    
-    </div>
     
 </body>
 </html>

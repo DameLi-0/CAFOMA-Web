@@ -19,7 +19,7 @@
 
                     <div class="btns">
                         <a class="template_BTN"  href="index.php?action=displayFormationMore&formation_id=<?= $inscription->getFk_formation_id();?>">En savoir +</a>
-
+                        <a class="template_BTN"  href="index.php?action=deleteInsc&formation_id=<?= $inscription->getFk_formation_id();?>">Se désinscrire</a>
                     </div>
                 </div>
             <?php } }else{?>
