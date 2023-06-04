@@ -19,7 +19,12 @@
       
       <a class="template_BTN" href="index.php?action=deconnexion">Déconnexion</a>
       <br>
-      <a id="edit" href="index.php?action=editAccount&id=<?php echo $user->getUser_id();?>"><img src="./public/Obligatory/icon_edit.png" width="32px" height="32px"></a>
+      <div>
+          <a class="icon_edit" href="index.php?action=editAccount&id=<?php echo $user->getUser_id();?>"><img src="./public/Obligatory/icon_edit.png" width="32px" height="32px"></a>
+          <a href="index.php?action=deleteAccount&id=<?php echo $user->getUser_id();?>"><img src="./public/Obligatory/icon_poubelle.png" width="32px" height="32px"></a>
+      </div>
+      
+      
   </div>
     
     

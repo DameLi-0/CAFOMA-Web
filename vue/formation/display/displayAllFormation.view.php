@@ -15,12 +15,12 @@
                 <img src="public/Training/Image/<?php echo $formation->getImg(); ?>" width="100px" height="100px">
                 <h2><?php echo $formation->getLibelle(); ?></h2>
                 <h3><?php echo $formation->getAcronyme(); ?></h3>
-                <h4><?php echo $formation->getDescription(); ?></h4>
+                <p><?php echo $formation->getDescription(); ?><p>
                 <div class="btns">
                     <a class="template_BTN"  href="index.php?action=displayFormationMore&formation_id=<?= $formation->getFormation_id();?>">En savoir +</a>
                     
                     <?php if(Securite::isConnected()){ ?>
-                            <a class="template_BTN" href="index.php?action=addTraining&id=<?php echo $formation->getFormation_id(); ?>">M'inscrire</a>
+                            <a class="template_BTN" href="index.php?action=addTraining&id=<?php echo $formation->getLibelle(); ?>">M'inscrire</a>
                     <?php } ?>
          
                 </div>

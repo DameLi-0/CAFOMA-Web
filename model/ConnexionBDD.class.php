@@ -3,7 +3,7 @@ abstract class ConnexionBDD {
     private static $pdo;
     
     private static function setBdd(){
-        self::$pdo = new PDO("mysql:host=localhost;dbname=cafoma;charset=utf8","root","");
+        self::$pdo = new PDO("mysql:host=localhost;dbname=cafoma;charset=utf8","dameli","dameliAdminBDD03042003*");
         self::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
     }
 
@@ -15,8 +15,8 @@ abstract class ConnexionBDD {
     }
     
     public static function getPdo(){
-        $login="root";
-        $mdp="";
+        $login="dameli";
+        $mdp="dameliAdminBDD03042003";
         $bd="cafoma";
         $serveur="localhost";
         $port="3306";

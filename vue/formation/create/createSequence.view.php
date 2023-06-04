@@ -33,6 +33,7 @@
 
         <?php $tabSequence = $formation->getTab_sequence(); ?>
         <?php $numSeq = 0; ?>        
+                
                 <?php foreach($tabSequence as $sequence) {?>
                 <?php $numSeq++ ?>
                     <div class="carte">  

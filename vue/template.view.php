@@ -1,5 +1,10 @@
-<?php require_once "./outils/securite.php"; ?>
-
+<?php
+    if(isset($_GET['cookie-accept'])){
+        setcookie('cookie-accept','true', time() + 3600); 
+        header("Location: index.php");
+    }
+    require_once "outils/securite.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,11 +35,13 @@
                     </a>
                 </div>
             <?php }else{ ?>
-                <div class="nav_item">
-                    <a href="index.php?action=loginAccount">
-                        <div class="item-text">Se connecter</div>
-                    </a>
-                </div>            
+                <?php if(Securite::autoriserCookie()){ ?>
+                    <div class="nav_item">
+                        <a href="index.php?action=loginAccount">
+                            <div class="item-text">Se connecter</div>
+                        </a>
+                    </div>
+                <?php } ?>
             <?php } ?>
             
             <?php if (Securite::verifAccessAdmin()){ ?>
@@ -58,6 +65,22 @@
         <?php echo $content ?>
     </div>
     
+    <?php if(!isset($_COOKIE['cookie-accept'])){ ?>
+        <div class="banniere">
+            <div class="text-banniere">
+                <p>
+                    Notre site utilise un cookies de session pour l'authentification et d'autres fonctions pour utiliser nos services.<br>
+                    Voire notre <a href="index.php?action=cookies">politique en matiére de cookie</a><br>
+                    Voire notre <a href="index.php?action=donnees-personnelles">politique relatif aux données personnelles</a>
+                </p>
+            </div>
+            <div class="button-banniere">
+                <a href="index.php?action=cookie-accept">OK, j'accepte</a>
+                <a href="index.php?action=cookie-refuse">Continuer sans accepter</a>
+            </div>
+        </div>
+    <?php } ?>    
+    
 </body>
     <footer>
         <p><i>DameLi © 2023 Formation en ligne. Tous droits réservés.</i></p>
@@ -69,4 +92,7 @@
             <a class="doc_item">Données personnelles</a>
         </div>
     </footer> 
+
+
+
 </html>

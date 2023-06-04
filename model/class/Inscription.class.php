@@ -5,12 +5,15 @@ class Inscription implements JsonSerializable {
     private $fk_formation_id;
     private $fk_user_id;
     private $date;
+    
+   private $libelle;
 
     
-    function __construct($fk_formation_id, $fk_user_id) {
+    function __construct($fk_formation_id, $fk_user_id, $libelle) {
 
         $this->fk_formation_id= $fk_formation_id;
         $this->fk_user_id = $fk_user_id;
+        $this->libelle = $libelle;
         $this->date = $date = date('Y-m-d');
     }
     
@@ -25,7 +28,9 @@ class Inscription implements JsonSerializable {
     public function setFk_formation_id($fk_formation_id){$this->fk_formation_id = $fk_formation_id;}    
     
     public function getFk_user_id(){return $this->fk_user_id;}
-    public function setFk_user_id($fk_user_id){$this->fk_user_id = $fk_user_id;}    
+    public function setFk_user_id($fk_user_id){$this->fk_user_id = $fk_user_id;}  
+    
+    public function getLibelle(){return $this->libelle;}
 
     public function getDate(){return $this->date;}
     public function setDate($date){$this->date = $date;}

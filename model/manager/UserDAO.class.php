@@ -70,10 +70,9 @@ class UserManager extends ConnexionBDD {
     
     function editUserBdd($user){
         $pdo = $this->getBdd();
-        
         $req = "
         UPDATE user 
-        SET user_id = :user_id, login = :login, mdp = :mdp, email = :email, img = :img, role = :role 
+        SET user_id = 'user_id', login = 'login', mdp = 'mdp', email = 'email', img = 'img', role = 'role', valid = 'valid' 
         WHERE id = :id";
         
         $stmt = $pdo->prepare($req);
@@ -83,6 +82,7 @@ class UserManager extends ConnexionBDD {
         $stmt->bindValue(":email",$user->getemail(),PDO::PARAM_STR);
         $stmt->bindValue(":img",$user->getImg(),PDO::PARAM_STR);
         $stmt->bindValue(":role",$user->getRole(),PDO::PARAM_STR);
+        $stmt->bindValue(":valid",$user->getValid(),PDO::PARAM_INT);
         $stmt->execute();
         $stmt->closeCursor();
     }
@@ -132,4 +132,23 @@ class UserManager extends ConnexionBDD {
         return $valid['valid'];
     }
     
+    function deleteAccount($id){
+        $pdo = $this->getBdd();
+        $req = "DELETE FROM `user` WHERE user_id=:id";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":id",$id,PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->closeCursor();        
+    }
+    
+    function verifExistEmail($email){
+        $pdo = $this->getBdd();
+        $req = "SELECT email FROM user WHERE email=:email";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":email",$email,PDO::PARAM_STR);
+        $stmt->execute();
+        $email = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();  
+        return $email['email'];        
+    }
 } 

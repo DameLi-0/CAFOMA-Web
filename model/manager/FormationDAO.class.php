@@ -5,6 +5,8 @@ require_once "./model/class/Sequence.class.php";
 require_once "./model/class/Ressource.class.php";
 require_once "./model/class/Inscription.class.php";
 require_once "./outils/outil.php";?>
+
+
 <?php
 class FormationManager extends ConnexionBDD {
     private $formations;
@@ -88,44 +90,35 @@ class FormationManager extends ConnexionBDD {
     }
     
     
+ 
     
 /* --------------------------- AFFICHAGE DES FORMATIONS INSCRITES --------------------------- */        
-    /*function displayMyTraining($user_id){
-        $stmt = $this->getBdd()->prepare("SELECT * FROM inscription WHERE fk_user_id = :user_id");
-        $stmt->bindValue(":user_id",$user_id,PDO::PARAM_INT);
-        $stmt->execute();
-        $bddInscription = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $stmt->closeCursor();
-        
-        foreach($bddInscription as $inscription){
-            $i=new Inscription($inscription['fk_formation_id'], $inscription['fk_user_id'], $inscription['date']);
-            $this->inscriptions[]=$i;
-        }
-        return $this->inscriptions;
-    }*/
 
     function displayMyTraining($user_id){
-        $stmt = $this->getBdd()->prepare("SELECT inscription.fk_formation_id, inscription.fk_user_id, formation.formation_id, formation.libelle FROM inscription INNER JOIN formation ON inscription.fk_formation_id = formation.formation_id WHERE inscription.fk_user_id = 27;");
+        $stmt = $this->getBdd()->prepare(""
+                . "SELECT insc.inscription_id, insc.fk_formation_id, insc.fk_user_id, f.libelle "
+                . " FROM inscription AS insc"
+                . " INNER JOIN formation AS f ON insc.fk_formation_id = f.formation_id "
+                . " WHERE insc.fk_user_id = :user_id ORDER BY date ASC");
+        
         $stmt->bindValue(":user_id",$user_id,PDO::PARAM_INT);
         $stmt->execute();
         $bddInscription = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         
+        $inscriptionList = array();
         foreach($bddInscription as $inscription){
-            $i=new Inscription($inscription['fk_formation_id'], $inscription['fk_user_id'], $inscription['date']);
-            $this->inscriptions[]=$i;
+            $i=new Inscription($inscription['fk_formation_id'], $inscription['fk_user_id'], $inscription['libelle']);
+            $inscriptionList[]=$i;
         }
-        return $this->inscriptions;
+         return $inscriptionList;
     }
     
 
     /* --------------------------- AJOUT EN BASE DE DONNEE --------------------------- */
     
     
-/**
- * 
- * @param type $formation
- */
+
     function addFormation($formation){
         $pdo = $this->getBdd();
         $req = "
@@ -143,11 +136,6 @@ class FormationManager extends ConnexionBDD {
     }
     
     
-    
-/**
- * 
- * @param type $sequence
- */   
     function addSequence($sequence){
         $pdo = $this->getBdd();
         $req = "

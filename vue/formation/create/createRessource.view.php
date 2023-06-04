@@ -10,8 +10,9 @@
       
         <h1>Ajouter une ressource</h1>
         <form method="POST" action="index.php?action=validCreateRessource" enctype="multipart/form-data">
-            <input type="hidden" name="formation_id" value="<?=$_GET['formation_id']?>">
-            <input type="hidden" name="sequence_id" value="<?=$sequence_id?>">
+            
+            <input type="text" name="formation_id" value="<?= $_GET['formation_id']?>">
+            <input type="text" name="sequence_id" value="<?= $sequence_id?>">
 
             <label for="libelle">Libelle</label>
             <input type="text" id="libelle" name="libelle" placeholder="Libelle">    
@@ -41,19 +42,20 @@
         <h1>Ressources </h1>
             <div class="cartes">
 
-  
-                <?php foreach($tabRessource as $ressource) {?>
+                        <?php $tabRessource = $sequence->getTab_ressource();   
                 
-                    <?php $extension = $ressource->getExtension(); ?>
-                    <?php if ($extension === "mp4"){ $type = "Vidéo"; } ?>
-                    <?php if ($extension === "pdf"){ $type = "PDF"; } ?>
-                    <?php if ($extension === "zip"){ $type = "Archive"; } ?>
-                
-                    <div class="carte">  
-                        <h2><?php echo $type ?></h2>
-                        <h3><?= $ressource->getLibelle(); ?></h3>
-                        <a><img src="../../../public/Obligatory/icon_trash.png"></a>
-                    </div>
+                         foreach($tabRessource as $ressource) {
+
+                         $extension = $ressource->getExtension(); 
+                         if ($extension === "mp4"){ $type = "Vidéo"; } 
+                         if ($extension === "pdf"){ $type = "PDF"; } 
+                         if ($extension === "zip"){ $type = "Archive"; } ?>
+
+                        <div class="carte">  
+                            <h2><?php echo $type ?></h2>
+                            <h3><?= $ressource->getLibelle(); ?></h3>
+                            <a><img src="../../../public/Obligatory/icon_trash.png"></a>
+                        </div>
                 <?php } ?>
             </div>
 	</section>    
@@ -64,6 +66,6 @@
 
 <?php
     $content=ob_get_clean();
-    $titre = "Ajoute une ressource !";
+    $titre = "Ajouter une ressource !";
     require "vue/template.view.php";
-?>    
+?>  

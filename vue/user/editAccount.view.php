@@ -12,7 +12,8 @@
     
     <form method="POST" action="index.php?action=validEditAccount"  enctype="multipart/form-data">
         
-        <input type="hidden" name="id" value="<?= $user->getUser_id() ?>">
+        <input type="hidden" name="user_id" value="<?= $user->getUser_id() ?>">
+        <input type="hidden" name="img" value="<?= $user->getImg() ?>">
 
         <label for="login">Login</label>
         <input type="text" id="login" name="login" placeholder="Login" value="<?php echo $user->getLogin(); ?>" required>   
@@ -22,12 +23,6 @@
         <label for="email">E-mail</label>
         <input type="email" id="email" name="email" placeholder="E-mail" value="<?php echo $user->getEmail(); ?>" required >
         
-        <div style="margin: 0;">
-            <label class="form-label" for="img">Photo de profil</label>
-            <p style="color: lightgray; margin: 0;">Aperçu</p>
-            <img src="public/User/<?php echo $user->getImg(); ?>" alt="Photo de profil" height="50px" width="50px">
-            <input class="form-control" type="file" id="img" name="img">
-        </div>
 
         <?php if (Securite::verifAccessAdmin()){ ?>
             <label for="role">Rôle</label>

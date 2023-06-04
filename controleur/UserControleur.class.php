@@ -16,34 +16,57 @@ class UserControleur{
     }
     
     function displayCreateAccount(){
+        $alert = "";
         require 'vue/user/createAccount.view.php';
     }
     
-    function validCreateAccount($login, $mdp, $email){
+    function validCreateAccount($login, $mdp, $email, $acceptServ, $acceptData){
+        $alert = "";
+        $emailExist = $this->userManager->verifExistEmail($email); 
         
-        /* GERER L'IMAGE */
-        $file = $_FILES['img'];
-        $dir = "public/User/";
-        $nomImageAjoute = ajouterImage($file, $dir);
+        if(!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/", $mdp )) {
+            $alert = "Votre mot de passe doit contenir au moins 12 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
+            require "vue/user/createAccount.view.php";
+            return;
+        }   
         
-        /* GERER LE MOT DE PASSE */
-        $hpassword = password_hash($mdp, PASSWORD_DEFAULT);
+        if($emailExist > 0){
+            $alert = "Ce mail est déjà renseigner pour un compte";
+            require "vue/user/createAccount.view.php";
+        } 
         
-        /* ENVOIS DE L'EMAIL DE VERIFICATION */
-        $this->sendMailValidation($login, $email);
+        if(!$acceptServ || !$acceptData){
+            $alert = "Vous devez valider les cases à cocher pour pouvoir créer votre compte !"; 
+            require "vue/user/createAccount.view.php";
+        }     
         
-        /* CREATION DE L'OBJET 'User' */
-        $user = new User("", $login, $hpassword, $email, $nomImageAjoute, "Abonner", 0);
-        
-        /* AJOUT DU USER EN BDD */
-        $this->userManager->addAccount($user);
-        
-        header("Location: index.php");
+        else{
+            $hpassword = password_hash($mdp, PASSWORD_DEFAULT);  
+
+            /* GERER L'IMAGE */
+            $file = $_FILES['img'];
+            $dir = "public/User/";
+            $nomImageAjoute = ajouterImage($file, $dir);
+
+            /* ENVOIS DE L'EMAIL DE VERIFICATION */
+            $this->sendMailValidation($login, $email);
+
+            /* CREATION DE L'OBJET 'User' */
+            $user = new User("", $login, $hpassword, $email, $nomImageAjoute, "Abonner", 0);
+
+            /* AJOUT DU USER EN BDD */
+            if($this->userManager->addAccount($user)){
+               header("Location: index.php");   
+            }else throw new Exception ("Le compte n'a pu être créé.");
+
+                      
+        }
+
     }
     
     private function sendMailValidation($login,$email){
         $mail = $email;
-        $urlVerification = "http://localhost/Projets/CAFOMA/"."index.php?action=validMailAccount&login=".$login;
+        $urlVerification = "http://localhost/CAFOMA/"."index.php?action=validMailAccount&login=".$login;
         $sujet = "Confirmation de création de votre compte !";
         $message = "Pour valider votre compte veuillez cliquer sur le lien suivant ".$urlVerification;
         sendMail($mail,$sujet,$message);
@@ -74,20 +97,12 @@ class UserControleur{
         require "vue/user/editAccount.view.php";
     }
     
-    function validEditAccount($id, $login, $mdp, $email, $role){
-        $nomImageAjoute = $_POST['image'];
-       
-        if($_FILES['img']['size'] > 0){
-            unlink("public/PPusers/".$nomImageAjoute);
-            
-            $file = $_FILES['img'];
-            $dir = "public/PPusers/";
-            
-            $nomImageAjoute = ajouterImage($file,$dir);
-        }      
-        $user = new User($id, $login, $mdp, $email, $nomImageAjoute, $role);
-
+    function validEditAccount($id, $login, $mdp, $email, $img, $role){
+             
+        $user = new User($id, $login, $mdp, $email, $img, $role, 1);
+        
         $this->userManager->editUserBdd($user);
+        var_dump($user);
         header("Location: index.php");
 
     }     
@@ -121,4 +136,16 @@ class UserControleur{
             unset($_SESSION['id']);
             header("Location: index.php");      
     }  
+    
+    function deleteAccount($id){
+        $user = $this->userManager->deleteAccount($id);
+        unset($_SESSION['role']);
+        unset($_SESSION['login']);
+        unset($_SESSION['id']);
+        header("Location: index.php");    
+    }
+    
+    function refuseCookie() {        
+        require "vue/error/ConsentementCookie.view.php";
+    }
 }

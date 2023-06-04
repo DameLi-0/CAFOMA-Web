@@ -238,3 +238,31 @@ tr{
       font-size: 1.5em;
     }
 }
+
+.banniere{
+   border: solid 2px white;
+   background: rgba(0,0,0,0.911);
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   color: white;
+   display: flex;
+   justify-content: space-around;
+   padding: 30px;
+   font-family: "Signika Negative", sans-serif;
+}
+.text-banniere p{
+    font-size: large;
+}
+.button-banniere{
+    padding-top: 15px;
+}
+.button-banniere a{
+    border: solid 2px rgb(230,30,30);
+    padding: 10px;
+    background: rgb(216,30,30);
+    border-radius: 7px;
+    color: white;
+    text-decoration: none;
+}

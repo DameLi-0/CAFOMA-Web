@@ -45,7 +45,9 @@ class FormationsControleur{
      * Envoie vers le formulaire de création de formation 
      */
     function displayCreateFormation(){
-        require 'vue/formation/create/createFormation.view.php';
+        if(Securite::verifAccessAdmin() || Securite::verifAccessResponsable()){
+            require 'vue/formation/create/createFormation.view.php';
+        }else throw new Exception("Vous n'avez pas le droit d'accéder à cette page");
     }
 
     /**
@@ -58,20 +60,21 @@ class FormationsControleur{
      * @param type $description
      */
     function validCreateFormation($libelle, $acronyme, $description){
-        
-        /* GESTION DE L'IMAGE */
-        $file = $_FILES['img'];
-        $dir = "public/Training/Image/";
-        $nomImageAjoute = ajouterImage($file, $dir);  
-        
-        /* GESTION DE LA VIDEO */
-        $file = $_FILES['video'];
-        $dir = "public/Training/Ressource/";
-        $nomVideoAjoute = ajouterImage($file, $dir); 
-        
-        $formation = new Formation("",$_SESSION['id'], $libelle, $acronyme, $description, $nomImageAjoute, $nomVideoAjoute);
-        $this->formationManager->addFormation($formation);
-        header("Location: index.php?action=displayMenuCreation");
+        if(Securite::verifAccessAdmin() || Securite::verifAccessResponsable()){
+            /* GESTION DE L'IMAGE */
+            $file = $_FILES['img'];
+            $dir = "public/Training/Image/";
+            $nomImageAjoute = ajouterImage($file, $dir);  
+
+            /* GESTION DE LA VIDEO */
+            $file = $_FILES['video'];
+            $dir = "public/Training/Ressource/";
+            $nomVideoAjoute = ajouterImage($file, $dir); 
+
+            $formation = new Formation("",$_SESSION['id'], $libelle, $acronyme, $description, $nomImageAjoute, $nomVideoAjoute);
+            $this->formationManager->addFormation($formation);
+            header("Location: index.php?action=displayMenuCreation");            
+        }else throw new Exception("Vous n'avez pas les droit nécessaires");
     }
     
     /**
@@ -135,7 +138,6 @@ class FormationsControleur{
      * Affichage du formulaire de création de ressource
      */
     function displayCreateRessource($sequence_id){
-        $sequence = $this->formationManager->displayRessource($sequence_id);
         require 'vue/formation/create/createRessource.view.php';
     }
     
