@@ -3,13 +3,14 @@ require_once './model/manager/FormationDAO.class.php';
 require_once './model/manager/UserDAO.class.php';
 require_once './outils/outil.php'; 
 
-$formationDao = FormationManager::getInstance();
+
 $userDao = UserManager::getInstance();
+$formationDao = FormationManager::getInstance();
 
 if(isset($_GET["operation"])){
     if($_GET["operation"]=="lister"){
         try{
-            $formations=$formationDao->displayAllFormation();
+            $formations = $formationDao->displayAllFormation();
             print("lister#");
             print(json_encode($formations));
             echo(json_encode($formations));
@@ -22,20 +23,21 @@ if(isset($_GET["operation"])){
             $login = $_GET["login"];
             $password = $_GET["password"];
             $passwdHashbd = $userDao->getPasswdHashUser($login);
-            $formationUndefined[] = array('id' => '-1','libelle' => 'undefined','acronyme' => 'undefined','description' => 'undefined', 'image' => 'undefined');
+            $formationUndefined[] = array('formation_id' => '-1','fk_user_id' => '-1','libelle' => 'undefined','acronyme' => 'undefined','description' => 'undefined', 'img' => 'undefined', 'video' => 'undefined');
             print("login#");
             
             if(password_verify($password, $passwdHashbd)){
                 
-                $user_id = $userDao->getUserIdByLogin($login);   
+                $user_id = $userDao->getIdUser($login);  
                 $inscriptions = $formationDao->displayMyTraining($user_id);
-            
+                    
                 foreach($inscriptions as $inscrit){
-                    $formation = $formationDao->displayFormationById($inscrit->getFk_formation_id());
+                    $formation = $formationDao->displayAllFormationSrById($inscrit->getFk_formation_id());
                     $formations[] = $formation;
+                    var_dump($formation);
                 }
                     
-                if(!isset($formations)){ 
+                if(isset($formations)){ 
                     $arr = array('login' => $login, 'verif' => 'vrai','formations' => $formationUndefined);
                     print(json_encode($arr));
                 }

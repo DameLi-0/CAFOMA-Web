@@ -161,13 +161,4 @@ class UserManager extends ConnexionBDD {
         return $email['email'];        
     }
     
-    function getUserIdByLogin($login){
-        $stmt = $this->getBdd()->prepare("SELECT 'user_id' FROM user WHERE login=:login");
-        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt->closeCursor();  
-        $user_id = $user['user_id'];
-        return $user_id; 
-    }
 } 
